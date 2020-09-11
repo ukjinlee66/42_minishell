@@ -9,7 +9,7 @@ INCLUDES = -I includes/
 LIBS = -lft -L ./srcs/Libft/
 
 SRCS = srcs/main.c					\
-	   srcs/get_next_line.c			\
+	   srcs/get_interactive_line.c	\
 	   srcs/list_func.c				\
 	   srcs/split_line.c			\
 	   srcs/builtin_exit.c

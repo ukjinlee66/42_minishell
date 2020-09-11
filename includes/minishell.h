@@ -43,11 +43,9 @@ typedef struct		s_list
 void		main_process(void);
 
 /*
-**		get_next_line.c
+**		get_interactive_line.c
 */
-int			get_next_line(char **line);
-int			ft_strlen(char *str);
-char		*ft_strjoin(char *s1, char *s2);
+int			get_interactive_line(char **line);
 
 /*
 **		builtin_exit.c
@@ -57,7 +55,7 @@ void		builtin_exit(void);
 /*
 **		list_func.c
 */
-int			add_data(t_list **plist, void **data);
+int			add_data(t_list **p_list, void **p_data);
 void		free_list(t_list *list);
 
 /*
@@ -68,6 +66,9 @@ t_list		*split_line(const char *line);
 /*
 **		Libft
 */
+void		ft_bzero(void *src, size_t n);
+size_t		ft_strlen(const char *src);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
+char		*ft_strjoin(char const *s1, char const *s2);
 
 #endif
