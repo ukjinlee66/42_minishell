@@ -50,7 +50,7 @@ int			get_interactive_line(char **line);
 /*
 **		builtin_exit.c
 */
-void		builtin_exit(void);
+void		command_exit(void);
 
 /*
 **		list_func.c

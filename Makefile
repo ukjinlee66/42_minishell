@@ -12,7 +12,7 @@ SRCS = srcs/main.c					\
 	   srcs/get_interactive_line.c	\
 	   srcs/list_func.c				\
 	   srcs/split_line.c			\
-	   srcs/builtin_exit.c
+	   srcs/func/command_exit.c
 
 OBJS = $(SRCS:.c=.o)
 
