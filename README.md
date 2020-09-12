@@ -3,7 +3,7 @@
 [sseo](https://github.com/sseo42)<br>
 [youlee](https://github.com/ukjinlee66)<br><br>
 # Mandatory list:<br>
-- [ ] Show a prompt when waiting for a new command<br>
+- [x] Show a prompt when waiting for a new command<br>
 - [ ] Search and launch the right executable (based on the PATH variable or by using relative or absolute path) like in bash<br>
 - [ ] echo with option ’-n’<br>
 - [ ] cd with only a relative or absolute path<br>
