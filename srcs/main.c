@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 15:15:53 by youlee            #+#    #+#             */
-/*   Updated: 2020/09/12 16:18:14 by youlee           ###   ########.fr       */
+/*   Updated: 2020/09/12 16:29:58 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		main_process(void)
 {
-	t_list			*inputs;
+	t_list			*command_lines;
 	char			*line;
 	int				gnl_ret;
 
@@ -22,7 +22,7 @@ void		main_process(void)
 		exit (2);			//unexpected case
 	if (gnl_ret == 0)		//ctrl + D
 		command_exit();
-	if ((inputs = split_line((const char *)line)))
+	if ((command_lines = split_line((const char *)line)))
 	{
 		free(line);
 		line = 0;
@@ -31,7 +31,7 @@ void		main_process(void)
 		t_list			*test;
 		char			*test_str;
 
-		test = inputs;
+		test = command_lines;
 		while (test)
 		{
 			test_str = (char *)test->data;
@@ -40,7 +40,8 @@ void		main_process(void)
 			test = test->next;
 		}
 		//for test
-		free_list(inputs);
+		//handle_command(command_lines);
+		free_list(command_lines);
 	}
 }
 
