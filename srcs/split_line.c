@@ -58,7 +58,7 @@ static int		flush_data(t_list **p_out, const char *line, char **p_data, size_t *
 }
 
 static int		parse_quote_section(const char *line, char **p_data, \
-		size_t *p_start, const char q)
+		size_t *p_start, const char q) // specail character 처리하기.
 {
 	size_t			len;
 	size_t			start;
@@ -90,11 +90,11 @@ static int		split_line_main(t_list **p_out, char **p_data, const char *line)
 	while ((c = line[start + len]) && !my_errno)
 	{
 		if (c == ';' || c == '>' || c == '<' || c == '|' || c == ' ' || \
-				c == 39 || c == 34)
+				c == '\'' || c == '\"')
 			my_errno |= update_data(line, p_data, &start, &len);
 		if (c == ';' || c == '>' || c == '<' || c == '|' || c == ' ')
 			my_errno |= flush_data(p_out, line, p_data, &start);
-		else if (c == 34 || c == 39)
+		else if (c == '\'' || c == '\"')
 			my_errno |= parse_quote_section(line, p_data, &start, c);
 		else
 			len++;
@@ -112,9 +112,7 @@ t_list			*split_line(const char *line)
 	data = 0;
 	out = 0;
 	if (!split_line_main(&out, &data, line))
-	{
 		return (out);
-	}
 	if (data)
 		free(data);
 	free_list(out);
