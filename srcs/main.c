@@ -35,7 +35,7 @@ void		main_process(void)
 		while (test)
 		{
 			test_str = (char *)test->data;
-			printf("test for pasing: %s -> %lu\n", test_str, \
+			printf("test for parsing: %s -> %lu\n", test_str, \
 					ft_strlen((const char *)test_str));
 			test = test->next;
 		}
