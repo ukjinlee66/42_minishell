@@ -58,7 +58,7 @@ static int		flush_data(t_list **p_out, const char *line, char **p_data, size_t *
 }
 
 static int		parse_quote_section(const char *line, char **p_data, \
-		size_t *p_start, const char q) // specail character 처리하기.
+		size_t *p_start, const char q)
 {
 	size_t			len;
 	size_t			start;
@@ -67,6 +67,8 @@ static int		parse_quote_section(const char *line, char **p_data, \
 	start = *p_start + 1;
 	while (line[start + len] != q)
 	{
+		if (line[start + len] == '\\')
+			len++;
 		if (line[start + len] == 0)
 			return (2);			//multiple commands
 		len++;
@@ -97,7 +99,7 @@ static int		split_line_main(t_list **p_out, char **p_data, const char *line)
 		else if (c == '\'' || c == '\"')
 			my_errno |= parse_quote_section(line, p_data, &start, c);
 		else
-			len++;
+			len += (c == '\\') ? 2 : 1; //multiple commands handle
 	}
 	my_errno |= update_data(line, p_data, &start, &len);
 	my_errno |= flush_data(p_out, line, p_data, &start);
