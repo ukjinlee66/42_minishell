@@ -110,10 +110,13 @@ t_list			*split_line(const char *line)
 {
 	char			*data;
 	t_list			*out;
+	int				my_error;
 
 	data = 0;
 	out = 0;
-	if (!split_line_main(&out, &data, line))
+	my_error = split_line_main(&out, &data, line);
+	free((void *)line);
+	if (!my_error)
 		return (out);
 	if (data)
 		free(data);

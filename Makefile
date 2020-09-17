@@ -12,6 +12,7 @@ SRCS = srcs/main.c					\
 	   srcs/get_interactive_line.c	\
 	   srcs/list_func.c				\
 	   srcs/split_line.c			\
+	   srcs/handle_command.c		\
 	   srcs/func/command_exit.c
 
 OBJS = $(SRCS:.c=.o)
@@ -20,7 +21,7 @@ OBJS = $(SRCS:.c=.o)
 	$(CC) $(CFALGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJS)
-	@cd srcs/Libft; make
+	@cd srcs/Libft; make bonus
 	$(CC) $(CFLAGS) $(LIBS) $(OBJS) -o $(NAME)
 
 all: $(NAME)

@@ -48,6 +48,11 @@ void		main_process(void);
 int			get_interactive_line(char **line);
 
 /*
+**		handle_command.c
+*/
+void		handle_command(t_list *target, int *pipe_in, int *pipe_out);
+
+/*
 **		builtin_exit.c
 */
 void		command_exit(void);
@@ -70,5 +75,5 @@ void		ft_bzero(void *src, size_t n);
 size_t		ft_strlen(const char *src);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
-
+int			ft_strcmp(const char *src1, const char *src2);
 #endif

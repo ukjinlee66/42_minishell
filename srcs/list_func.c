@@ -37,3 +37,15 @@ void		free_list(t_list *list)
 		free(current);
 	}
 }
+
+t_list		*free_first_elem(t_list *list)
+{
+	t_list		*out;
+
+	if (!list)
+		return (0);
+	out = list->next;
+	free(list->data);
+	free(list);
+	return (out);
+}

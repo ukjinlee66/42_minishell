@@ -17,6 +17,7 @@ void		main_process(void)
 	t_list			*command_lines;
 	char			*line;
 	int				gnl_ret;
+	pid_t			pid_num;
 
 	if ((gnl_ret = get_interactive_line(&line)) < 0)
 		exit (2);			//unexpected case
@@ -24,11 +25,8 @@ void		main_process(void)
 		command_exit();
 	if ((command_lines = split_line((const char *)line)))
 	{
-		free(line);
-		line = 0;
-
 		//for test
-		t_list			*test;
+		/*t_list			*test;
 		char			*test_str;
 
 		test = command_lines;
@@ -38,10 +36,22 @@ void		main_process(void)
 			printf("test for parsing: %s -> %lu\n", test_str, \
 					ft_strlen((const char *)test_str));
 			test = test->next;
+		}*/
+		if (!(pid_num = fork()))
+		{
+			int		test_pipe_in[1000];
+			int		test_pipe_out[1000];
+
+			test_pipe_in[0] = -1;
+			test_pipe_out[0] = -1;
+		
+			handle_command(command_lines, test_pipe_in, test_pipe_out);
+		}
+		else
+		{
+			wait(0);
 		}
 		//for test
-		//handle_command(command_lines);
-		free_list(command_lines);
 	}
 }
 
