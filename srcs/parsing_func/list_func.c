@@ -38,14 +38,26 @@ void		free_list(t_list *list)
 	}
 }
 
-t_list		*free_first_elem(t_list *list)
+void		*edit_list4redirection(t_list **p_first_elem, t_list *before)
 {
-	t_list		*out;
+	void		*out_data;
+	t_list		*current;
+	t_list		*after;
+	int			cnt;
 
-	if (!list)
-		return (0);
-	out = list->next;
-	free(list->data);
-	free(list);
-	return (out);
+	cnt = 0;
+	if (!before)
+		current = *p_first_elem;
+	else
+		current = before->next;
+	after = current->next;		//after should't be null
+	if (!before)
+		*p_first_elem = after->next;
+	else
+		before->next = after->next;
+	out_data = after->data;
+	free(current->data);
+	free(current);
+	free(after);
+	return (out_data);
 }

@@ -73,9 +73,9 @@ static int		parse_quote_section(const char *line, char **p_data, \
 			return (2);			//multiple commands
 		len++;
 	}
-	if ((update_data(line, p_data, &start, &len)))
+	len += 2;
+	if ((update_data(line, p_data, p_start, &len)))
 		return (1);				//malloc fail
-	*p_start = start + 1;
 	return (0);
 }
 
@@ -110,12 +110,23 @@ t_list			*split_line(const char *line)
 {
 	char			*data;
 	t_list			*out;
+	t_list			*temp;
+	int				arg_type;
 	int				my_error;
 
 	data = 0;
 	out = 0;
 	my_error = split_line_main(&out, &data, line);
+	temp = out;
 	free((void *)line);
+	while (temp)
+	{
+		arg_type = get_arg_type((const char *)temp->data);
+		if (arg_type <= 3 && arg_type > 0)
+			if (!temp->next || get_arg_type((const char *)temp->next->data))
+				my_error |= 4;
+		temp = temp->next;
+	}
 	if (!my_error)
 		return (out);
 	if (data)

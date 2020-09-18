@@ -38,35 +38,43 @@ typedef struct		s_list
 */
 
 /*
-**		main.c
+**		args
 */
-void		main_process(void);
+int			arg_backward(t_list **p_first_elem, t_list *before, int *pipe_in, int *pipe_out);
+int			arg_extract(t_list **p_first_elem, t_list *before, int *pipe_in, int *pipe_out);
+int			arg_forward(t_list **p_first_elem, t_list *before, int *pipe_in, int *pipe_out);
+int			arg_semicolon(t_list **p_first_elem, t_list *target, int *pipe_in, int *pipe_out);
+int			arg_pipe(t_list **p_first_elem, t_list *before, int *pipe_in, int *pipe_out);
 
 /*
-**		get_interactive_line.c
+**		commands
 */
-int			get_interactive_line(char **line);
-
-/*
-**		handle_command.c
-*/
-void		handle_command(t_list *target, int *pipe_in, int *pipe_out);
-
-/*
-**		builtin_exit.c
-*/
+void		handle_command(t_list **p_first_elem, int *pipe_in, int *pipe_out);
+int			execute_command(t_list *list_start, t_list *list_end, int *pipe_in, int *pipe_out);
 void		command_exit(void);
+
 
 /*
 **		list_func.c
 */
 int			add_data(t_list **p_list, void **p_data);
 void		free_list(t_list *list);
+void		*edit_list4redirection(t_list **p_first_elem, t_list *before);
+
+/*
+**		parsing_tool.c
+*/
+int			get_arg_type(const char *arg);
 
 /*
 **		split_line.c
 */
 t_list		*split_line(const char *line);
+
+/*
+**		get_interactive_line.c
+*/
+int			get_interactive_line(char **line);
 
 /*
 **		Libft
@@ -76,4 +84,5 @@ size_t		ft_strlen(const char *src);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
 int			ft_strcmp(const char *src1, const char *src2);
+
 #endif

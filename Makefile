@@ -8,12 +8,19 @@ INCLUDES = -I includes/
 
 LIBS = -lft -L ./srcs/Libft/
 
-SRCS = srcs/main.c					\
-	   srcs/get_interactive_line.c	\
-	   srcs/list_func.c				\
-	   srcs/split_line.c			\
-	   srcs/handle_command.c		\
-	   srcs/func/command_exit.c
+SRCS = srcs/main.c							\
+	   srcs/arg_func/arg_backward.c			\
+	   srcs/arg_func/arg_extract.c			\
+	   srcs/arg_func/arg_forward.c			\
+	   srcs/arg_func/arg_pipe.c				\
+	   srcs/arg_func/arg_semicolon.c		\
+	   srcs/command_func/command_exit.c		\
+	   srcs/command_func/execute_command.c	\
+	   srcs/command_func/handle_command.c	\
+	   srcs/parsing_func/list_func.c		\
+	   srcs/parsing_func/split_line.c		\
+	   srcs/parsing_func/parsing_tool.c		\
+	   srcs/read_write_func/get_interactive_line.c
 
 OBJS = $(SRCS:.c=.o)
 

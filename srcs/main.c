@@ -25,8 +25,9 @@ void		main_process(void)
 		command_exit();
 	if ((command_lines = split_line((const char *)line)))
 	{
+		/*
 		//for test
-		/*t_list			*test;
+		t_list			*test;
 		char			*test_str;
 
 		test = command_lines;
@@ -36,7 +37,8 @@ void		main_process(void)
 			printf("test for parsing: %s -> %lu\n", test_str, \
 					ft_strlen((const char *)test_str));
 			test = test->next;
-		}*/
+		}
+		*/
 		if (!(pid_num = fork()))
 		{
 			int		test_pipe_in[1000];
@@ -45,7 +47,7 @@ void		main_process(void)
 			test_pipe_in[0] = -1;
 			test_pipe_out[0] = -1;
 		
-			handle_command(command_lines, test_pipe_in, test_pipe_out);
+			handle_command(&command_lines, test_pipe_in, test_pipe_out);
 		}
 		else
 		{
@@ -53,6 +55,8 @@ void		main_process(void)
 		}
 		//for test
 	}
+	else
+		printf("parsing error\n");
 }
 
 int			main(void)
