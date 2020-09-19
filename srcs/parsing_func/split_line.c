@@ -132,5 +132,6 @@ t_list			*split_line(const char *line)
 	if (data)
 		free(data);
 	free_list(out);
+	write(1, "parsing error\n", 14);
 	return (0);
 }

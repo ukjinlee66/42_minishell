@@ -56,8 +56,6 @@ void		main_process(void)
 		}
 		//for test
 	}
-	else
-		printf("parsing error\n");
 }
 
 int			main(void)
