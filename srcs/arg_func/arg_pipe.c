@@ -22,7 +22,6 @@ int			arg_pipe(t_list **p_first_elem, t_list *before, int *pipe_in, int *pipe_ou
 		pipe_in[1] = -1;
 		pipe_out[0] = -1;
 		handle_command(&current, pipe_in, pipe_out);
-		exit(0);
 	}
 	else
 	{

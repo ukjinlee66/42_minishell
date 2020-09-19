@@ -51,6 +51,7 @@ void		main_process(void)
 		}
 		else
 		{
+			free_list(command_lines);
 			wait(0);
 		}
 		//for test
