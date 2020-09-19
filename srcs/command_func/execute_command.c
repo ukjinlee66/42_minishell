@@ -35,27 +35,40 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 {
 	char		**argv;
 	//pid_t		pid_num;
+	int cnt;
+	char		buf[1000];
 
 	argv = construct_argv(list_start, list_end);
 	/*
-	if (!(pid_num = fork()))
+	if (!(pid_num = fork()))//child
 	{
 		if (!ft_strcmp(argv[0], "echo"))
-			command_echo(argv)
+			command_echo(argv);
 		else if (!ft_strcmp(argv[0], "cd"))
-			command_cd(argv)
+			command_cd(argv);
 		else if (!ft_strcmp(argv[0], "pwd"))
-			command_pwd(argv)
+			command_pwd(argv);
 		else if (!ft_strcmp(argv[0], "export"))
-			command_export(argv)
+			command_export(argv);
 		else if (!ft_strcmp(argv[0], "unset"))
-			command_unset(argv)
+			command_unset(argv);
 		else if (!ft_strcmp(argv[0], "env"))
-			command_env(argv)
+			command_env(argv);
 		else if (!ft_strcmp(argv[0], "exit"))
-			command_exit(argv)
+			command_exit(argv);
+		else if (argv[0][0] == '.' && argv[0][1] =='/')
+			command_relative_run(argv);
 		else
-			launch_excutable(argv);
+			launch_excutable(argv); //error case
+		pipe	
+	
+	}
+	else//parent
+	{
+		cnt = 0;
+		while (pipe_in[cnt])
+			read(pipe_in[cnt++],buf,BUFFER_SIZE);
+
 	}
 	*/
 
