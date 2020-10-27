@@ -72,9 +72,7 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 	}
 	*/
 
-	int			cnt;
 	int			read_len;
-	char		buf[BUF_SIZE + 1];
 
 	cnt = 0;
 	write(1, "command: ", 9);
