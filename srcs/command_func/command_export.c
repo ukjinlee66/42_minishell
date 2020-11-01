@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_cd.c                                       :+:      :+:    :+:   */
+/*   command_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/19 19:57:26 by youlee            #+#    #+#             */
-/*   Updated: 2020/11/01 20:35:13 by youlee           ###   ########.fr       */
+/*   Created: 2020/11/01 20:38:22 by youlee            #+#    #+#             */
+/*   Updated: 2020/11/01 20:39:02 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	command_cd(char **argv, int *receiver, int *sender)
+void	command_export(char **argv, int *receiver, int *sender)
 {
 
 }

@@ -31,7 +31,7 @@ static char	**construct_argv(t_list *list_start, t_list *list_end)
 }
 
 int			execute_command(t_list *list_start, t_list *list_end, \
-								int *pipe_in, int *pipe_out)
+								int *receiver, int *sender)
 {
 	char		**argv;
 	//pid_t		pid_num;
@@ -39,38 +39,34 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 	char		buf[1000];
 
 	argv = construct_argv(list_start, list_end);
-	/*
 	if (!(pid_num = fork()))//child
 	{
 		if (!ft_strcmp(argv[0], "echo"))
-			command_echo(argv);
+			command_echo(argv, receiver, sender);
 		else if (!ft_strcmp(argv[0], "cd"))
-			command_cd(argv);
+			command_cd(argv, receiver, sender);
 		else if (!ft_strcmp(argv[0], "pwd"))
-			command_pwd(argv);
+			command_pwd(argv, receiver, sender);
 		else if (!ft_strcmp(argv[0], "export"))
-			command_export(argv);
+			command_export(argv, receiver, sender);
 		else if (!ft_strcmp(argv[0], "unset"))
-			command_unset(argv);
+			command_unset(argv, receiver, sender);
 		else if (!ft_strcmp(argv[0], "env"))
-			command_env(argv);
+			command_env(argv, receiver, sender);
 		else if (!ft_strcmp(argv[0], "exit"))
-			command_exit(argv);
+			command_exit();
 		else if (argv[0][0] == '.' && argv[0][1] =='/')
-			command_relative_run(argv);
+			command_relative_run(argv, receiver, sender);
 		else
-			launch_excutable(argv); //error case
-		pipe	
-	
+			launch_excutable(argv, receiver, sender); //error case	
 	}
 	else//parent
 	{
 		cnt = 0;
-		while (pipe_in[cnt])
-			read(pipe_in[cnt++],buf,BUFFER_SIZE);
+		while (receiver[cnt])
+			read(receiver[cnt++],buf,BUFFER_SIZE);
 
 	}
-	*/
 
 	int			read_len;
 
@@ -93,9 +89,9 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 	free(argv);
 
 	cnt = 0;
-	while (pipe_in[cnt] != -1)
+	while (receiver[cnt] != -1)
 	{
-		read_len = read(pipe_in[cnt], buf, BUF_SIZE);
+		read_len = read(receiver[cnt], buf, BUF_SIZE);
 		buf[read_len] = 0;
 		write(1, "test input: ", 12);
 		write(1, buf, read_len);
@@ -104,9 +100,9 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 	}
 
 	cnt = 0;
-	while (pipe_out[cnt] != -1)
+	while (sender[cnt] != -1)
 	{
-		write(pipe_out[cnt], "test output", 11);
+		write(sender[cnt], "test output", 11);
 		cnt++;
 	}
 	return (0);
