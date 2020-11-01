@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int			arg_pipe(t_list **p_first_elem, t_list *before, int *pipe_in, int *pipe_out)
+int			arg_pipe(t_list **p_first_elem, t_list *before, int *receiver, int *sender)
 {
 	t_list		*current;
 	pid_t		pid_num;
@@ -18,19 +18,19 @@ int			arg_pipe(t_list **p_first_elem, t_list *before, int *pipe_in, int *pipe_ou
 	if (!(pid_num = fork()))
 	{
 		free_list(*p_first_elem);
-		pipe_in[0] = new_pipe[0];
-		pipe_in[1] = -1;
-		pipe_out[0] = -1;
-		handle_command(&current, pipe_in, pipe_out);
+		receiver[0] = new_pipe[0];
+		receiver[1] = -1;
+		sender[0] = -1;
+		handle_command(&current, receiver, sender);
 	}
 	else
 	{
 		free_list(current);
-		while (pipe_out[cnt] != -1)
+		while (sender[cnt] != -1)
 			cnt++;
-		pipe_out[cnt] = new_pipe[1];
-		pipe_out[cnt + 1] = -1;
-		handle_command(p_first_elem, pipe_in, pipe_out);
+		sender[cnt] = new_pipe[1];
+		sender[cnt + 1] = -1;
+		handle_command(p_first_elem, receiver, sender);
 	}
 	return (0);
 }

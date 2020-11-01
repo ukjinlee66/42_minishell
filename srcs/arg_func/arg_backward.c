@@ -13,7 +13,7 @@ static void	arg_part(const char *file_name, int fd_out)
 	exit(0);
 }
 
-int			arg_backward(t_list **p_first_elem, t_list *before, int *pipe_in, int *pipe_out)
+int			arg_backward(t_list **p_first_elem, t_list *before, int *receiver, int *sender)
 {
 	pid_t		pid_num;
 	int			new_pipe[2];
@@ -27,11 +27,11 @@ int			arg_backward(t_list **p_first_elem, t_list *before, int *pipe_in, int *pip
 		arg_part(file_name, new_pipe[1]);
 	else
 	{
-		while (pipe_in[cnt] != -1)
+		while (receiver[cnt] != -1)
 			cnt++;
-		pipe_in[cnt] = new_pipe[0];
-		pipe_in[cnt + 1] = -1;
-		handle_command(p_first_elem, pipe_in, pipe_out);
+		receiver[cnt] = new_pipe[0];
+		receiver[cnt + 1] = -1;
+		handle_command(p_first_elem, receiver, sender);
 	}
 	return (0);
 }

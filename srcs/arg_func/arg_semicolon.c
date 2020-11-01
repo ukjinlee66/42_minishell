@@ -2,18 +2,18 @@
 
 # define BUF_SIZE 1000
 
-int			arg_semicolon(t_list **p_first_elem, t_list *target, int *pipe_in, int *pipe_out)
+int			arg_semicolon(t_list **p_first_elem, t_list *target, int *receiver, int *sender)
 {
 	t_list	*current;
 
 	current = *p_first_elem;
-	execute_command(current, target, pipe_in, pipe_out);
-	pipe_in[0] = -1;
-	pipe_out[0] = -1;
+	execute_command(current, target, receiver, sender);
+	receiver[0] = -1;
+	sender[0] = -1;
 	current = target;
 	target = target->next;
 	free(current->data);
 	free(current);
-	handle_command(&target, pipe_in, pipe_out);
+	handle_command(&target, receiver, sender);
 	return (0);
 }

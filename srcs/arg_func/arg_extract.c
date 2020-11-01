@@ -21,7 +21,7 @@ static void	arg_part(const char *file_name, int fd_in)
 	exit(0);
 }
 
-int			arg_extract(t_list **p_first_elem, t_list *before, int *pipe_in, int *pipe_out)
+int			arg_extract(t_list **p_first_elem, t_list *before, int *receiver, int *sender)
 {
 	pid_t		pid_num;
 	int			new_pipe[2];
@@ -35,11 +35,11 @@ int			arg_extract(t_list **p_first_elem, t_list *before, int *pipe_in, int *pipe
 		arg_part(file_name, new_pipe[0]);
 	else
 	{
-		while (pipe_out[cnt] != -1)
+		while (sender[cnt] != -1)
 			cnt++;
-		pipe_out[cnt] = new_pipe[1];
-		pipe_out[cnt + 1] = -1;
-		handle_command(p_first_elem, pipe_in, pipe_out);
+		sender[cnt] = new_pipe[1];
+		sender[cnt + 1] = -1;
+		handle_command(p_first_elem, receiver, sender);
 	}
 	return (0);
 }

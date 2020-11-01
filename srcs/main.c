@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 15:15:53 by youlee            #+#    #+#             */
-/*   Updated: 2020/09/12 17:39:12 by youlee           ###   ########.fr       */
+/*   Updated: 2020/11/01 20:20:32 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void		main_process(void)
 		command_exit();
 	if ((command_lines = split_line((const char *)line)))
 	{
-		/*
+		
 		//for test
 		t_list			*test;
 		char			*test_str;
@@ -38,16 +38,16 @@ void		main_process(void)
 					ft_strlen((const char *)test_str));
 			test = test->next;
 		}
-		*/
+		
 		if (!(pid_num = fork()))
 		{
-			int		test_pipe_in[1000];
-			int		test_pipe_out[1000];
+			int		receiver[1000]; //test_pipe_in
+			int		sender[1000]; //test_pipe_out
 
-			test_pipe_in[0] = -1;
-			test_pipe_out[0] = -1;
+			receiver[0] = -1;
+			sender[0] = -1;
 		
-			handle_command(&command_lines, test_pipe_in, test_pipe_out);
+			handle_command(&command_lines, receiver, sender);
 		}
 		else
 		{
