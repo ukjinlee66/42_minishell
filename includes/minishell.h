@@ -66,6 +66,8 @@ void		command_exit(void);
 void		command_pwd(char **argv, int *receiver, int *sender);
 void		command_unset(char **argv, int *receiver, int *sender);
 void		command_export(char **argv, int *receiver, int *sender);
+void		command_relative_run(char **argv, int *receiver, int *sender);
+void		launch_excutable(char **argv, int *receiver, int *sender);
 
 /*
 **		list_func.c

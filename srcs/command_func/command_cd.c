@@ -6,9 +6,10 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 19:57:26 by youlee            #+#    #+#             */
-/*   Updated: 2020/11/01 20:35:13 by youlee           ###   ########.fr       */
+/*   Updated: 2020/11/02 20:20:49 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "minishell.h"
 
 void	command_cd(char **argv, int *receiver, int *sender)
 {

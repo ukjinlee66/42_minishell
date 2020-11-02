@@ -6,9 +6,10 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 20:38:22 by youlee            #+#    #+#             */
-/*   Updated: 2020/11/01 20:39:02 by youlee           ###   ########.fr       */
+/*   Updated: 2020/11/02 20:21:17 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "minishell.h"
 
 void	command_export(char **argv, int *receiver, int *sender)
 {

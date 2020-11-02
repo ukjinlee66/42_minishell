@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execute_command.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/02 20:21:57 by youlee            #+#    #+#             */
+/*   Updated: 2020/11/02 20:23:31 by youlee           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #include "minishell.h"
 
 static char	**construct_argv(t_list *list_start, t_list *list_end)
@@ -61,8 +74,8 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 	else//parent
 	{
 		cnt = 0;
-		while (receiver[cnt])
-			read(receiver[cnt++],buf, IO_BUF_SIZE);
+		//while (receiver[cnt])
+		//	read(receiver[cnt++],buf, IO_BUF_SIZE);
 
 	}
 

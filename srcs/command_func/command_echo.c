@@ -6,9 +6,11 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 16:15:59 by youlee            #+#    #+#             */
-/*   Updated: 2020/11/01 20:33:27 by youlee           ###   ########.fr       */
+/*   Updated: 2020/11/02 20:20:38 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "minishell.h"
 
 void		command_echo(char **argv, int *receiver, int *sender)
 {

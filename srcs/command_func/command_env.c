@@ -6,9 +6,10 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 19:58:39 by youlee            #+#    #+#             */
-/*   Updated: 2020/11/01 20:36:01 by youlee           ###   ########.fr       */
+/*   Updated: 2020/11/02 20:21:07 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "minishell.h"
 
 void	command_env(char **argv, int *receiver, int *sender)
 {
