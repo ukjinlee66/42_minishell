@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:21:57 by youlee            #+#    #+#             */
-/*   Updated: 2020/11/02 20:23:31 by youlee           ###   ########.fr       */
+/*   Updated: 2020/11/02 21:04:14 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,40 +45,29 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 								int *receiver, int *sender)
 {
 	char		**argv;
-	pid_t		pid_num;
-	int cnt;
+	int			cnt;
 	char		buf[IO_BUF_SIZE];
 
 	argv = construct_argv(list_start, list_end);
-	if (!(pid_num = fork()))//child
-	{
-		if (!ft_strcmp(argv[0], "echo"))
-			command_echo(argv, receiver, sender);
-		else if (!ft_strcmp(argv[0], "cd"))
-			command_cd(argv, receiver, sender);
-		else if (!ft_strcmp(argv[0], "pwd"))
-			command_pwd(argv, receiver, sender);
-		else if (!ft_strcmp(argv[0], "export"))
-			command_export(argv, receiver, sender);
-		else if (!ft_strcmp(argv[0], "unset"))
-			command_unset(argv, receiver, sender);
-		else if (!ft_strcmp(argv[0], "env"))
-			command_env(argv, receiver, sender);
-		else if (!ft_strcmp(argv[0], "exit"))
-			command_exit();
-		else if (argv[0][0] == '.' && argv[0][1] =='/')
-			command_relative_run(argv, receiver, sender);
-		else
-			launch_excutable(argv, receiver, sender); //error case	
-	}
-	else//parent
-	{
-		cnt = 0;
-		//while (receiver[cnt])
-		//	read(receiver[cnt++],buf, IO_BUF_SIZE);
-
-	}
-
+	if (!ft_strcmp(argv[0], "echo"))
+		command_echo(argv, receiver, sender);
+	else if (!ft_strcmp(argv[0], "cd"))
+		command_cd(argv, receiver, sender);
+	else if (!ft_strcmp(argv[0], "pwd"))
+		command_pwd(argv, receiver, sender);
+	else if (!ft_strcmp(argv[0], "export"))
+		command_export(argv, receiver, sender);
+	else if (!ft_strcmp(argv[0], "unset"))
+		command_unset(argv, receiver, sender);
+	else if (!ft_strcmp(argv[0], "env"))
+		command_env(argv, receiver, sender);
+	else if (!ft_strcmp(argv[0], "exit"))
+		command_exit();
+	else if (argv[0][0] == '.' && argv[0][1] =='/')
+		command_relative_run(argv, receiver, sender);
+	else
+		launch_excutable(argv, receiver, sender); //error case	
+	/*
 	int			read_len;
 
 	cnt = 0;
@@ -116,5 +105,6 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 		write(sender[cnt], "test output", 11);
 		cnt++;
 	}
+	*/
 	return (0);
 }
