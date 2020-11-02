@@ -96,8 +96,13 @@ static int		split_line_main(t_list **p_out, char **p_data, const char *line)
 			my_errno |= update_data(line, p_data, &start, &len);
 		if (c == ';' || c == '>' || c == '<' || c == '|' || c == ' ')
 			my_errno |= flush_data(p_out, line, p_data, &start);
-		else if (c == '\'' || c == '\"')
+		else if (c == '\'')
+		{
+		}
+		else if (c == '\"')
+		{
 			my_errno |= parse_quote_section(line, p_data, &start, c);
+		}
 		else
 			len += (c == '\\') ? 2 : 1; //multiple commands handle
 	}
