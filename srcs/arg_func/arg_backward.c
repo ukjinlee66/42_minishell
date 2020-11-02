@@ -1,10 +1,8 @@
 #include "minishell.h"
 
-# define BUF_SIZE 1000
-
 static void	arg_part(const char *file_name, int fd_out)
 {
-	char		buf[BUF_SIZE + 1];
+	char		buf[IO_BUF_SIZE + 1];
 	int			write_len;
 
 	strcpy(buf, file_name);

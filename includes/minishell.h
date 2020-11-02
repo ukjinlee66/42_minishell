@@ -21,7 +21,8 @@
 **===========================define values===============================
 */
 # define PATH_SIZE 1024
-# define PIPE_BUFFER_SIZE 1000
+# define PIPE_BUF_SIZE 1000
+# define IO_BUF_SIZE 1024
 
 /*
 **============================structure==================================

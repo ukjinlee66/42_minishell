@@ -1,15 +1,13 @@
 #include "minishell.h"
 
-# define BUF_SIZE 1000
-
 static void	arg_part(const char *file_name, int fd_in)
 {
-	char		buf[BUF_SIZE + 1];
+	char		buf[IO_BUF_SIZE + 1];
 	int			read_len;
 
-	if ((read_len = read(fd_in, buf, BUF_SIZE)) >= 0)
+	if ((read_len = read(fd_in, buf, IO_BUF_SIZE)) >= 0)
 	{
-		buf[BUF_SIZE] = 0;
+		buf[IO_BUF_SIZE] = 0;
 		write(1, "extract!\n", 9);
 		write(1, file_name, ft_strlen(file_name));
 		write(1, ": ", 2);

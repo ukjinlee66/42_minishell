@@ -1,7 +1,5 @@
 #include "minishell.h"
 
-# define BUF_SIZE 1000
-
 static char	**construct_argv(t_list *list_start, t_list *list_end)
 {
 	int			cnt;
@@ -34,9 +32,9 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 								int *receiver, int *sender)
 {
 	char		**argv;
-	//pid_t		pid_num;
+	pid_t		pid_num;
 	int cnt;
-	char		buf[1000];
+	char		buf[IO_BUF_SIZE];
 
 	argv = construct_argv(list_start, list_end);
 	if (!(pid_num = fork()))//child
@@ -64,7 +62,7 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 	{
 		cnt = 0;
 		while (receiver[cnt])
-			read(receiver[cnt++],buf,BUFFER_SIZE);
+			read(receiver[cnt++],buf, IO_BUF_SIZE);
 
 	}
 
@@ -91,7 +89,7 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 	cnt = 0;
 	while (receiver[cnt] != -1)
 	{
-		read_len = read(receiver[cnt], buf, BUF_SIZE);
+		read_len = read(receiver[cnt], buf, IO_BUF_SIZE);
 		buf[read_len] = 0;
 		write(1, "test input: ", 12);
 		write(1, buf, read_len);

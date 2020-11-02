@@ -29,7 +29,7 @@ OBJS = $(SRCS:.c=.o)
 
 $(NAME): $(OBJS)
 	@cd srcs/Libft; make bonus
-	$(CC) $(CFLAGS) $(LIBS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBS)
 
 all: $(NAME)
 

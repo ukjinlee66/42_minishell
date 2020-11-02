@@ -1,7 +1,5 @@
 #include "minishell.h"
 
-# define BUF_SIZE 1000
-
 int			arg_semicolon(t_list **p_first_elem, t_list *target, int *receiver, int *sender)
 {
 	t_list	*current;
