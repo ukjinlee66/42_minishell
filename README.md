@@ -30,3 +30,5 @@
 - [ ] Write AND edit a command over a few lines. In that case, we would love that ctrl+UP and ctrl+DOWN allow to go from one line to another in the command while remaining in the same column or otherwise the most appropriate column.<br>
 - [ ] &&, || with parenthesis for priorities, like in bash • wilcard * like in bash<br>
 # Reference sites<br><br>
+- <https://coding-chobo.tistory.com/54> - Shell special characters<br>
+- <https://github.com/cacharle/minishell_test> - Minishell tester<br><br>
