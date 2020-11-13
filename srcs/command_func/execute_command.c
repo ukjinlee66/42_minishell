@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:21:57 by youlee            #+#    #+#             */
-/*   Updated: 2020/11/02 21:04:14 by sseo             ###   ########.fr       */
+/*   Updated: 2020/11/13 20:50:34 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 	else if (!ft_strcmp(argv[0], "env"))
 		command_env(argv, receiver, sender);
 	else if (!ft_strcmp(argv[0], "exit"))
-		command_exit();
+		exit(1);
 	else if (argv[0][0] == '.' && argv[0][1] =='/')
 		command_relative_run(argv, receiver, sender);
 	else

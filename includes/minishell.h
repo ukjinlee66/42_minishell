@@ -16,6 +16,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <sys/stat.h>
+# include <stdbool.h>
 
 /*
 **===========================define values===============================
@@ -100,5 +101,11 @@ char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
 int			ft_strcmp(const char *src1, const char *src2);
 void		ft_putstr_fd(char *s, int fd);
+
+/*
+**		util
+*/
+
+void	two_pointer_free(char ***argv);
 
 #endif

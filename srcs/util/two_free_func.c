@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_exit.c                                     :+:      :+:    :+:   */
+/*   two_free_func.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: youlee <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/12 16:16:13 by youlee            #+#    #+#             */
-/*   Updated: 2020/11/13 20:23:19 by youlee           ###   ########.fr       */
+/*   Created: 2020/11/13 20:15:57 by youlee            #+#    #+#             */
+/*   Updated: 2020/11/13 20:19:22 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		command_exit(void)
+void	two_pointer_free(char ***argv)
 {
-	write(1, "exit program\n", 5);
-	exit(1);
+	int index;
+
+	index = 0;
+	while ((*argv)[index])
+		free((*argv)[index++]);
+	free((*argv));
 }
