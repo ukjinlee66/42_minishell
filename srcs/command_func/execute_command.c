@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:21:57 by youlee            #+#    #+#             */
-/*   Updated: 2020/11/13 20:50:34 by youlee           ###   ########.fr       */
+/*   Updated: 2020/11/18 17:24:06 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 	char		buf[IO_BUF_SIZE];
 
 	argv = construct_argv(list_start, list_end);
+	argv[0] = uppercase_conversion(argv[0]);
 	if (!ft_strcmp(argv[0], "echo"))
 		command_echo(argv, receiver, sender);
 	else if (!ft_strcmp(argv[0], "cd"))

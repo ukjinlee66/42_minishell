@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 16:15:59 by youlee            #+#    #+#             */
-/*   Updated: 2020/11/13 20:20:56 by youlee           ###   ########.fr       */
+/*   Updated: 2020/11/18 17:31:48 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void		command_echo(char **argv, int *receiver, int *sender)
 	int fd;
 	bool option_val;
 
+	option_val = false;
 	if (sender[0] == -1)
 		fd = 1;
 	else
@@ -53,6 +54,7 @@ void		command_echo(char **argv, int *receiver, int *sender)
 			write(fd, "\n", 1);
 		//pipe add code
 		free(temp);
+		exit(0);
 	}
 }
 

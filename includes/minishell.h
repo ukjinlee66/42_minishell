@@ -107,5 +107,5 @@ void		ft_putstr_fd(char *s, int fd);
 */
 
 void	two_pointer_free(char ***argv);
-
+char	*uppercase_conversion(char *str);
 #endif

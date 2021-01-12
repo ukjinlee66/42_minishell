@@ -30,7 +30,8 @@ SRCS = srcs/main.c							\
 	   srcs/parsing_func/split_line.c		\
 	   srcs/parsing_func/parsing_tool.c		\
 	   srcs/read_write_func/get_interactive_line.c	\
-	   srcs/util/two_free_func.c
+	   srcs/util/two_free_func.c  \
+	   srcs/util/uppercase_conversion.c
 
 OBJS = $(SRCS:.c=.o)
 

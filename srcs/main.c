@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 15:15:53 by youlee            #+#    #+#             */
-/*   Updated: 2020/11/02 19:34:55 by sseo             ###   ########.fr       */
+/*   Updated: 2021/01/11 16:15:49 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,23 @@ void		main_process(void)
 	}
 }
 
-int			main(void)
+int			main(int argc, char*argv[])
 {
 	char			path[PATH_SIZE];
 
-	while (1)
+	if (argc == 1)
 	{
-		getcwd(path, PATH_SIZE);
-		write(1, path, ft_strlen(path));
-		write(1, "$ ", 2);
-		main_process();
+		while (1)
+		{
+			getcwd(path, PATH_SIZE);
+			write(1, path, ft_strlen(path));
+			write(1, "$ ", 2);
+			main_process();
+		}
+	}
+	else
+	{
+
 	}
 	return (0);
 }
