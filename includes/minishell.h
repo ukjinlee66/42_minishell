@@ -108,4 +108,14 @@ void		ft_putstr_fd(char *s, int fd);
 
 void	two_pointer_free(char ***argv);
 char	*uppercase_conversion(char *str);
+void	copy_env_list(char **envp);
+void	envl_sort(void);
+int		get_env_list(char *chr);
+
+/*
+**		variable
+*/
+
+char	cur_path[PATH_SIZE];
+char	envp[PATH_SIZE][PATH_SIZE]; //1024 x 1024 env array
 #endif

@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 15:15:53 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/11 16:15:49 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/12 17:43:59 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,15 @@ void		main_process(void)
 	}
 }
 
-int			main(int argc, char*argv[])
+int			main(int argc, char **argv, char **envp)
 {
-	char			path[PATH_SIZE];
-
 	if (argc == 1)
 	{
+		copy_env_list(envp); //envp -> envl copy
 		while (1)
 		{
-			getcwd(path, PATH_SIZE);
-			write(1, path, ft_strlen(path));
+			getcwd(cur_path, PATH_SIZE);
+			write(1, cur_path, ft_strlen(cur_path));
 			write(1, "$ ", 2);
 			main_process();
 		}
