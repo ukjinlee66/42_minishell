@@ -109,6 +109,8 @@ void		ft_putstr_fd(char *s, int fd);
 void	two_pointer_free(char ***argv);
 char	*uppercase_conversion(char *str);
 void	copy_env_list(char **envp);
+void	copy_env_list2(char envl[2048][2048],
+		char envp[2048][2048]);
 void	envl_sort(void);
 int		get_env_list(char *chr);
 
@@ -117,5 +119,6 @@ int		get_env_list(char *chr);
 */
 
 char	cur_path[PATH_SIZE];
-char	envp[PATH_SIZE][PATH_SIZE]; //1024 x 1024 env array
+char	envl[2048][2048]; //2048 x 2048 env array
+char	soenvl[2048][2048]; //sort env array
 #endif
