@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 00:37:36 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/14 22:38:20 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/14 22:44:27 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,7 @@ bool	check_env(char *find, char *b)
 			return (false);
 		idx++;
 	}
+	if (find[idx] != '\0' || b[idx] != '=')
+		return (false);
 	return (true);
 }
