@@ -57,25 +57,82 @@ static int		flush_data(t_list **p_out, const char *line, char **p_data, size_t *
 	return (0);
 }
 
-static int		parse_quote_section(const char *line, char **p_data, \
-		size_t *p_start, const char q)
+static int		parse_double_quote(const char *line, char **p_data, size_t *p_start)
+{
+	size_t			len;
+	size_t			start;
+	char			*tmp_s;
+	int				tmp_idx;
+	size_t			tmp_len, tmp_start;
+
+	len = 0;
+	start = *p_start + 1;
+	while (line[start + len] != '\"')
+	{
+		if (line[start + len] == '\\')
+		{
+			if (update_data(line, p_data, &start, &len))
+				return (1);
+			start++;
+			len++;
+			if (update_data(line, p_data, &start, &len))
+				return (1);
+		}
+		else if (line[start + len] == '$')
+		{
+			if (update_data(line, p_data, &start, &len))
+				return (1);
+			start++;
+			while ((line[start + len] >= 'a' && line[start + len] <= 'z') || \
+					(line[start + len] >= 'A' && line[start + len] <= 'Z') || \
+					(line[start + len] >= '0' && line[start + len] <= '9'))
+				len++;
+			if (!len)
+			{
+				start--;
+				len++;
+				continue ;
+			}
+			if (!(tmp_s = ft_substr(line, (unsigned int)start, len)))
+				return (1);			//malloc fail
+			tmp_idx = get_env_list(tmp_s);
+			if (tmp_idx >= 0)
+			{
+				tmp_start = len + 1;
+				tmp_len = strlen(envl[tmp_idx]) - tmp_start;
+				if (update_data(envl[tmp_idx], p_data, &tmp_start, &tmp_len))
+					return (1);
+			}
+			start += len;
+			len = 0;
+		}
+		else if (line[start + len] == 0)
+			return (2);			//multiple commands
+		else
+			len++;
+	}
+	if ((update_data(line, p_data, &start, &len)))
+		return (1);				//malloc fail
+	*p_start = start + 1;
+	return (0);
+}
+
+static int		parse_single_quote(const char *line, char **p_data, size_t *p_start)
 {
 	size_t			len;
 	size_t			start;
 
 	len = 0;
 	start = *p_start + 1;
-	while (line[start + len] != q)
+	while (line[start + len] != '\'')
 	{
-		if (line[start + len] == '\\')
-			len++;
 		if (line[start + len] == 0)
-			return (2);			//multiple commands
+			return (2);		//multiple commands
 		len++;
 	}
-	len += 2;
-	if ((update_data(line, p_data, p_start, &len)))
-		return (1);				//malloc fail
+	if ((update_data(line, p_data, &start, &len)))
+		return (1);
+	*p_start = start + 1;
 	return (0);
 }
 
@@ -92,19 +149,27 @@ static int		split_line_main(t_list **p_out, char **p_data, const char *line)
 	while ((c = line[start + len]) && !my_errno)
 	{
 		if (c == ';' || c == '>' || c == '<' || c == '|' || c == ' ' || \
-				c == '\'' || c == '\"')
+				c == '\'' || c == '\"' || c == '\\')
 			my_errno |= update_data(line, p_data, &start, &len);
 		if (c == ';' || c == '>' || c == '<' || c == '|' || c == ' ')
 			my_errno |= flush_data(p_out, line, p_data, &start);
 		else if (c == '\'')
 		{
+			my_errno |= parse_single_quote(line, p_data, &start);
 		}
 		else if (c == '\"')
 		{
-			my_errno |= parse_quote_section(line, p_data, &start, c);
+			my_errno |= parse_double_quote(line, p_data, &start);
 		}
 		else
-			len += (c == '\\') ? 2 : 1; //multiple commands handle
+		{
+			len++; //multiple commands handle
+			if (c == '\\')
+			{
+				start++;
+				my_errno |= update_data(line, p_data, &start, &len);
+			}
+		}
 	}
 	my_errno |= update_data(line, p_data, &start, &len);
 	my_errno |= flush_data(p_out, line, p_data, &start);

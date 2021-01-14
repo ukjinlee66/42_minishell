@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:45:22 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/14 22:38:19 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/14 22:54:29 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int		get_env_list(char *chr)
 	int idx;
 
 	idx = 0;
-	while (envl[idx])
+	while (envl[idx][0])
 	{
 		if(check_env(chr, envl[idx])) //find chr
 			return(idx);
