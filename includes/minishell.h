@@ -113,7 +113,9 @@ void	copy_env_list2(char envl[2048][2048],
 		char envp[2048][2048]);
 void	envl_sort(void);
 int		get_env_list(char *chr);
-
+void	add_str_de(void); //add str "declare -x" to soenvl
+void	copy_arr(char *a, char*b, int num);
+bool	check_env(char *find, char *b);
 /*
 **		variable
 */

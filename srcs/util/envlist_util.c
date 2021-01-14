@@ -6,20 +6,20 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:45:22 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/13 23:54:27 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/14 22:38:19 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	copy_arr(char *a, char *b)
+void	copy_arr(char *a, char *b, int num)
 {
 	int i;
 
 	i = 0;
 	while (b[i])
 	{
-		a[i] = b[i];
+		a[i + num] = b[i];
 		i++;
 	}
 	a[i]='\0';
@@ -33,7 +33,7 @@ void	copy_env_list(char **envp) //envp -> envl
 	idx = 0;
 	while (envp[idx])
 	{
-		copy_arr(envl[idx], envp[idx]);
+		copy_arr(envl[idx], envp[idx], 0);
 		idx++;
 	}
 	envl[idx][0] = '\0';
@@ -50,7 +50,7 @@ void	copy_env_list2(char env[2048][2048],
 	idx = 0;
 	while (env2[idx][0])
 	{
-		copy_arr(env[idx], env2[idx]);
+		copy_arr(env[idx], env2[idx], 11);
 		idx++;
 	}
 	env[idx][0] = '\0';
@@ -64,23 +64,24 @@ void	envl_sort(void)
 
 	copy_env_list2(soenvl, envl);
 	idx = 0;
-	while (soenvl[idx][0])
+	while (soenvl[idx][12])
 	{
 		idx2 = 0;
-		while (soenvl[idx2][0])
+		while (soenvl[idx2][12])
 		{
 			if (idx == idx2)
 				idx2++;
-			if (soenvl[idx][0] < soenvl[idx2][0])
+			if (soenvl[idx][12] < soenvl[idx2][12])
 			{
-				copy_arr(temp, soenvl[idx]);
-				copy_arr(soenvl[idx], soenvl[idx2]);
-				copy_arr(soenvl[idx2], temp);
+				copy_arr(temp, soenvl[idx], 0);
+				copy_arr(soenvl[idx], soenvl[idx2], 0);
+				copy_arr(soenvl[idx2], temp, 0);
 			}
 			idx2++;
 		}
 		idx++;
 	}
+	//add_str_de();
 }
 
 int		get_env_list(char *chr)
@@ -90,10 +91,8 @@ int		get_env_list(char *chr)
 	idx = 0;
 	while (envl[idx])
 	{
-		if(!ft_strcmp(chr, envl[idx])) //find chr
-		{
+		if(check_env(chr, envl[idx])) //find chr
 			return(idx);
-		}
 		idx++;
 	}
 	return(-1);
