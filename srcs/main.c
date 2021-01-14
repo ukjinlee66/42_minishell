@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 15:15:53 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/13 23:46:07 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/15 00:35:12 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,11 @@ void		main_process(void)
 			test = test->next;
 		}
 		*/
-		if (!(pid_num = fork()))
-		{
-			int		receiver[1000];
-			int		sender[1000];
-
-			receiver[0] = -1;
-			sender[0] = -1;
-		
-			handle_command(&command_lines, receiver, sender);
-		}
-		else
-		{
-			free_list(command_lines);
-			wait(0);
-		}
+		int		receiver[1000];
+		int		sender[1000];
+		receiver[0] = -1;
+		sender[0] = -1;
+		handle_command(&command_lines, receiver, sender);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 16:15:59 by youlee            #+#    #+#             */
-/*   Updated: 2020/11/18 17:31:48 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/15 00:34:43 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		command_echo(char **argv, int *receiver, int *sender)
 			write(fd, "\n", 1);
 		//pipe add code
 		free(temp);
-		exit(0);
+		//exit(0);
 	}
 }
 
