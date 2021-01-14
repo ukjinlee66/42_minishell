@@ -41,7 +41,7 @@ OBJS = $(SRCS:.c=.o)
 	$(CC) $(CFALGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJS)
-	cd srcs/Libft; make bonus
+	@cd srcs/Libft; make bonus
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBS)
 
 all: $(NAME)

@@ -101,7 +101,7 @@ char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
 int			ft_strcmp(const char *src1, const char *src2);
 void		ft_putstr_fd(char *s, int fd);
-
+size_t		ft_strlcpy(char *dest, const char *src, size_t n);
 /*
 **		util
 */

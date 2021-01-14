@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:45:22 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/14 22:54:29 by sseo             ###   ########.fr       */
+/*   Updated: 2021/01/15 02:13:38 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,18 @@ void	copy_arr(char *a, char *b, int num)
 	int i;
 
 	i = 0;
+	while (i < num)
+	{
+		a[i] = ' ';
+		i++;
+	}
+	i = 0;
 	while (b[i])
 	{
 		a[i + num] = b[i];
 		i++;
 	}
-	a[i]='\0';
+	a[i + num]='\0';
 }
 
 void	copy_env_list(char **envp) //envp -> envl
@@ -64,14 +70,14 @@ void	envl_sort(void)
 
 	copy_env_list2(soenvl, envl);
 	idx = 0;
-	while (soenvl[idx][12])
+	while (soenvl[idx][11])
 	{
 		idx2 = 0;
-		while (soenvl[idx2][12])
+		while (soenvl[idx2][11])
 		{
 			if (idx == idx2)
 				idx2++;
-			if (soenvl[idx][12] < soenvl[idx2][12])
+			if (soenvl[idx][11] < soenvl[idx2][11])
 			{
 				copy_arr(temp, soenvl[idx], 0);
 				copy_arr(soenvl[idx], soenvl[idx2], 0);
@@ -81,7 +87,7 @@ void	envl_sort(void)
 		}
 		idx++;
 	}
-	//add_str_de();
+	add_str_de();
 }
 
 int		get_env_list(char *chr)
