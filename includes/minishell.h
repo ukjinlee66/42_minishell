@@ -102,6 +102,9 @@ char		*ft_strjoin(char const *s1, char const *s2);
 int			ft_strcmp(const char *src1, const char *src2);
 void		ft_putstr_fd(char *s, int fd);
 size_t		ft_strlcpy(char *dest, const char *src, size_t n);
+char		*ft_strdup(const char *src);
+char		**ft_split(const char *s, char c);
+char		*ft_strchr(const char *src, int c);
 /*
 **		util
 */
@@ -116,6 +119,8 @@ int		get_env_list(char *chr);
 void	add_str_de(void); //add str "declare -x" to soenvl
 void	copy_arr(char *a, char*b, int num);
 bool	check_env(char *find, char *b);
+void	set_env_list(char *name, char *value);
+void	add_double(char (*env)[2048]);
 /*
 **		variable
 */

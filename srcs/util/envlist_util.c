@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:45:22 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/15 02:13:38 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/16 03:07:56 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ void	copy_env_list(char **envp) //envp -> envl
 void	copy_env_list2(char env[2048][2048],
 		char env2[2048][2048])
 {
-	printf("copy env list2\n");
 	int		idx;
 	char	temp[2048];
 
 	idx = 0;
 	while (env2[idx][0])
 	{
+		add_double(&env2[idx]);// add double quotes soenvl
 		copy_arr(env[idx], env2[idx], 11);
 		idx++;
 	}

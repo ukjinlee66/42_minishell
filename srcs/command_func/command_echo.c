@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 16:15:59 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/15 00:34:43 by sseo             ###   ########.fr       */
+/*   Updated: 2021/01/15 02:48:18 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,3 +58,7 @@ void		command_echo(char **argv, int *receiver, int *sender)
 	}
 }
 
+void		command_echo2(char **argv, int *receiver, int *sender)
+{
+	//33 line -> 25줄 빼오기
+}
