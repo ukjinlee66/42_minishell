@@ -33,3 +33,4 @@
 - <https://coding-chobo.tistory.com/54> - Shell special characters<br>
 - <https://github.com/cacharle/minishell_test> - Minishell tester<br><br>
 - <https://blog.naver.com/PostView.nhn?blogId=sdrock&logNo=221508545540> - env setting<br><br>
+- <https://blog.gaerae.com/2015/01/bash-hello-world.html> - bash basics
