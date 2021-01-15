@@ -16,21 +16,9 @@
 - [ ] Redirections < > “>>” should work like in bash except for file descriptor aggregation<br>
 - [ ] Pipes | should work like in bash<br>
 - [x] Environment variables ($ followed by characters) should work like in bash • $? should work like in bash<br>
-- [ ] ctrl-C, ctrl-D and ctrl-\ should have the same result as in bash<br>
-# Bonus Part:<br>
-- [ ] If the Mandatory part is not perfect don’t even think about bonuses • You don’t need to do all the bonuses<br>
-- [ ] Redirection “<<” like in bash<br>
-- [ ] History and line editing with Termcaps (man tgetent for examples)<br>
-- [ ] Edit the line where the cursor is located.<br>
-- [ ] Move the cursor left and right to be able to edit the line at a specific loca- tion. Obviously new characters have to be inserted between the existing ones similarly to a classic shell.<br>
-- [ ] Use up and down arrows to navigate through the command history which we will then be able to edit if we feel like it (the line, not the history).<br>
-- [ ] Cut, copy, and/or paste all or part of a line using the key sequence you prefer.<br>
-- [ ] Move directly by word towards the left or the right using ctrl+LEFT and ctrl+RIGHT.<br>
-- [ ] Go directly to the beginning or the end of a line by pressing home and end.<br>
-- [ ] Write AND edit a command over a few lines. In that case, we would love that ctrl+UP and ctrl+DOWN allow to go from one line to another in the command while remaining in the same column or otherwise the most appropriate column.<br>
-- [ ] &&, || with parenthesis for priorities, like in bash • wilcard * like in bash<br>
+- [ ] ctrl-C, ctrl-D and ctrl-\ should have the same result as in bash<br><br>
 # Reference sites<br><br>
-- <https://coding-chobo.tistory.com/54> - Shell special characters<br>
+- <https://coding-chobo.tistory.com/54> - Shell special characters<br><br>
 - <https://github.com/cacharle/minishell_test> - Minishell tester<br><br>
 - <https://blog.naver.com/PostView.nhn?blogId=sdrock&logNo=221508545540> - env setting<br><br>
-- <https://blog.gaerae.com/2015/01/bash-hello-world.html> - bash basics
+- <https://blog.gaerae.com/2015/01/bash-hello-world.html> - bash basics<br><br>
