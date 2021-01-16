@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 20:38:22 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/16 02:34:10 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/16 22:50:44 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -29,6 +29,11 @@ void	command_export(char **argv, int *receiver, int *sender)
 	else //input case
 	{
 		name_value = ft_split(argv[1], '=');
+		if (get_env_list(name_value[0]) != -1) //overlap check
+		{
+			free(name_value);
+			return ;
+		}
 		set_env_list(name_value[0], name_value[1]);
 		envl_sort();
 		free(name_value);

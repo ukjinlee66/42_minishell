@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 16:15:59 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/15 02:48:18 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/17 03:35:41 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ void		command_echo(char **argv, int *receiver, int *sender)
 	int fd;
 	bool option_val;
 
+	int i = 0;
+//	printf("my pid : %d\n",getpid());
+//	while (i < 2)
+//	{
+//		printf("receiver : %d\n sender : %d\n",receiver[i], sender[i]);
+//		i++;
+//	}
 	option_val = false;
 	if (sender[0] == -1)
 		fd = 1;

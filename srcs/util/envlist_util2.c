@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 00:37:36 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/16 03:13:46 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/16 22:45:05 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	set_env_list(char *name, char *value) //
 
 void	add_double(char (*env)[2048])
 {
-	printf("%s\n",*env);
 	char **name_value;
 	char *temp;
 
