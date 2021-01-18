@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 16:16:13 by youlee            #+#    #+#             */
-/*   Updated: 2020/11/13 20:23:19 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/17 22:28:38 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 void		command_exit(void)
 {
 	write(1, "exit program\n", 5);
+	//run ctrl - C
 	exit(1);
 }

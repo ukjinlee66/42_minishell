@@ -66,10 +66,13 @@ void		command_env(char **argv, int *receiver, int *sender);
 void		command_exit(void);
 void		command_pwd(char **argv, int *receiver, int *sender);
 void		command_unset(char **argv, int *receiver, int *sender);
+void		clear_soenvl(void);
 void		command_export(char **argv, int *receiver, int *sender);
 void		command_relative_run(char **argv, int *receiver, int *sender);
+char		*make_com(char *argv);
+char		**make_envp(void);
 void		launch_excutable(char **argv, int *receiver, int *sender);
-
+void		command_absolute_run(char **argv, int *receiver, int *sender);
 /*
 **		list_func.c
 */
