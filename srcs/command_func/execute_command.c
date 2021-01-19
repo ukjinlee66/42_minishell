@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:21:57 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/19 05:45:15 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/20 03:59:47 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 
 	argv = construct_argv(list_start, list_end);
 	argv[0] = uppercase_conversion(argv[0]);
+	printf("\nmy pid : %d sender : %d receiver : %d\n",getpid(),sender[0], receiver[0]);
 	if (!ft_strcmp(argv[0], "echo"))
 		command_echo(argv, receiver, sender);
 	else if (!ft_strcmp(argv[0], "cd"))
@@ -70,6 +71,11 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 		command_relative_run(argv, receiver, sender);
 	else
 		launch_excutable(argv, receiver, sender); //error case	
+	if (sender[0] == -1) // 마지막명령일경우
+	{
+		printf("run kill!\n");
+		//kill(0, SIGKILL);
+	}
 	/*
 	int			read_len;
 

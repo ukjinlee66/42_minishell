@@ -131,4 +131,5 @@ void	add_double(char (*env)[2048]);
 char	cur_path[PATH_SIZE];
 char	envl[2048][2048]; //2048 x 2048 env array
 char	soenvl[2048][2048]; //sort env array
+char	print_buf[2048]; // print variable buf
 #endif

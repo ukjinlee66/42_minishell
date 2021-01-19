@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 00:37:36 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/16 22:45:05 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/20 04:19:26 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,12 @@ void	set_env_list(char *name, char *value) //
 	
 	idx = 0;
 	ft_strlcpy(temp, ft_strjoin(ft_strjoin(name, "="),value),
-			ft_strlen(name)+ft_strlen(value) + 3);
+			ft_strlen(name)+ft_strlen(value) + 2);
+	printf("temp : %s\n",temp);
 	while (envl[idx][0])
 		idx++;
-	ft_strlcpy(envl[idx + 1], envl[idx], ft_strlen(envl[idx]));
-	ft_strlcpy(envl[idx], envl[idx - 1], ft_strlen(envl[idx - 1]));
+	ft_strlcpy(envl[idx + 1], envl[idx], ft_strlen(envl[idx]) + 1);
+	ft_strlcpy(envl[idx], envl[idx - 1], ft_strlen(envl[idx - 1]) + 1);
 	ft_strlcpy(envl[idx - 1], temp, ft_strlen(temp) + 1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 19:58:04 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/17 04:17:04 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/20 04:20:33 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	command_unset(char **argv, int *receiver, int *sender)
 		while (envl[idx][0])
 		{
 			ft_strlcpy(envl[idx], envl[idx + 1],
-					ft_strlen(envl[idx + 1]));
+					ft_strlen(envl[idx + 1]) + 1);
 			idx++;
 		}
 		envl[idx - 1][0] = '\0';
@@ -44,7 +44,14 @@ void	clear_soenvl(void)
 	idx = 0;
 	while (soenvl[idx][0])
 	{
-		soenvl[idx][0] = '\0';
+		//soenvl[idx][0] = '\0';
+		ft_strlcpy(soenvl[idx],"",1);
+		idx++;
+	}
+	idx = 0;
+	while (soenvl[idx][0])
+	{
+		printf("idx : %s\n",soenvl[idx]);
 		idx++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 16:15:59 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/17 03:35:41 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/20 03:27:08 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,11 @@ void		command_echo(char **argv, int *receiver, int *sender)
 	bool option_val;
 
 	int i = 0;
-//	printf("my pid : %d\n",getpid());
-//	while (i < 2)
-//	{
-//		printf("receiver : %d\n sender : %d\n",receiver[i], sender[i]);
-//		i++;
-//	}
+	if (receiver[0] != -1) //test code
+	{
+		read(receiver[0], print_buf, 1000);
+		printf("i am receive %s\n",print_buf);
+	}
 	option_val = false;
 	if (sender[0] == -1)
 		fd = 1;
@@ -48,11 +47,16 @@ void		command_echo(char **argv, int *receiver, int *sender)
 			}
 			res = ft_strjoin(temp, argv[cnt]);
 			ft_putstr_fd(argv[cnt], fd);
+			if (sender[0] != -1)
+			{
+				ft_strlcpy(print_buf, argv[cnt], ft_strlen(argv[cnt]) + 2);
+				write(sender[0], print_buf, ft_strlen(print_buf) + 1);
+			}
 			if (argv[cnt + 1] != NULL)
 				write(fd, " ", 1);
 			free(temp);
 			temp = res;
-			cnt++;	
+			cnt++;
 		}
 		cnt = 0;
 		//clean function two pointer
