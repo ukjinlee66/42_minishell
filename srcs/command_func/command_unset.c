@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 19:58:04 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/20 04:20:33 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/26 00:48:08 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	command_unset(char **argv, int *receiver, int *sender)
 	if (idx)
 	{
 		//delete argv[1] env variable
+		idx2 = idx;
 		while (envl[idx][0])
 		{
 			ft_strlcpy(envl[idx], envl[idx + 1],
@@ -28,11 +29,21 @@ void	command_unset(char **argv, int *receiver, int *sender)
 			idx++;
 		}
 		envl[idx - 1][0] = '\0';
-		clear_soenvl();
-		envl_sort();
+		idx2 = get_soenv_list(argv[1]);
+		while (soenvl[idx2][0])
+		{
+			ft_strlcpy(soenvl[idx2], soenvl[idx2 + 1],
+					ft_strlen(soenvl[idx2 + 1]) + 1);
+			idx2++;
+		}
+		soenvl[idx2 - 1][0] = '\0';
+		//clear_soenvl();
+		//envl_sort();
 	}
 	else
 	{
+		write(1, strerror(errno), ft_strlen(strerror(errno)));
+		write(1, "\n", 1);
 		//not find unset case
 	}
 }
@@ -44,14 +55,8 @@ void	clear_soenvl(void)
 	idx = 0;
 	while (soenvl[idx][0])
 	{
-		//soenvl[idx][0] = '\0';
-		ft_strlcpy(soenvl[idx],"",1);
-		idx++;
-	}
-	idx = 0;
-	while (soenvl[idx][0])
-	{
-		printf("idx : %s\n",soenvl[idx]);
+		//soenvl[idx] = NULL;
+		ft_memset(soenvl[idx], ' ', ft_strlen(soenvl[idx]));
 		idx++;
 	}
 }

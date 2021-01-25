@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:45:22 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/20 04:24:36 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/25 21:48:38 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	copy_arr(char *a, char *b, int num)
 		a[i + num] = b[i];
 		i++;
 	}
-	a[i + num]='\0';
+	a[i + num] = '\0';
 }
 
 void	copy_env_list(char **envp) //envp -> envl

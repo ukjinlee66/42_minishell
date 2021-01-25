@@ -62,6 +62,7 @@ void		command_exit(void);
 */
 void		command_echo(char **argv, int *receiver, int *sender);
 void		command_cd(char **argv, int *receiver, int *sender);
+void		cd_home(void);
 void		command_env(char **argv, int *receiver, int *sender);
 void		command_exit(void);
 void		command_pwd(char **argv, int *receiver, int *sender);
@@ -108,6 +109,7 @@ size_t		ft_strlcpy(char *dest, const char *src, size_t n);
 char		*ft_strdup(const char *src);
 char		**ft_split(const char *s, char c);
 char		*ft_strchr(const char *src, int c);
+void		*ft_memset(void *src, int c, size_t n);
 /*
 **		util
 */
@@ -124,6 +126,8 @@ void	copy_arr(char *a, char*b, int num);
 bool	check_env(char *find, char *b);
 void	set_env_list(char *name, char *value);
 void	add_double(char (*env)[2048]);
+int		get_soenv_list(char *chr);
+void	set_env_list2(char *name, char *value);
 /*
 **		variable
 */
@@ -132,4 +136,5 @@ char	cur_path[PATH_SIZE];
 char	envl[2048][2048]; //2048 x 2048 env array
 char	soenvl[2048][2048]; //sort env array
 char	print_buf[2048]; // print variable buf
+DIR		*dp; //directory variable
 #endif

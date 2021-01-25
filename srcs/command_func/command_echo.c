@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 16:15:59 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/20 03:27:08 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/21 04:34:25 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		command_echo(char **argv, int *receiver, int *sender)
 	if (receiver[0] != -1) //test code
 	{
 		read(receiver[0], print_buf, 1000);
-		printf("i am receive %s\n",print_buf);
+//		printf("i am receive %s\n",print_buf);
 	}
 	option_val = false;
 	if (sender[0] == -1)

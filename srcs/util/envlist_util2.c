@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 00:37:36 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/20 04:19:26 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/26 00:48:06 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	set_env_list(char *name, char *value) //
 	idx = 0;
 	ft_strlcpy(temp, ft_strjoin(ft_strjoin(name, "="),value),
 			ft_strlen(name)+ft_strlen(value) + 2);
-	printf("temp : %s\n",temp);
 	while (envl[idx][0])
 		idx++;
 	ft_strlcpy(envl[idx + 1], envl[idx], ft_strlen(envl[idx]) + 1);
@@ -71,4 +70,18 @@ void	add_double(char (*env)[2048])
 	ft_strlcpy((*env), ft_strjoin(ft_strjoin(name_value[0], "="),
 				temp),
 			ft_strlen(*env) + 4);
+}
+
+int		get_soenv_list(char *chr)
+{
+	int idx;
+
+	idx = 0;
+	while (soenvl[idx][0])
+	{
+		if(check_env(chr, soenvl[idx] + 11)) //find chr
+			return(idx);
+		idx++;
+	}
+	return(-1);
 }
