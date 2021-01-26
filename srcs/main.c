@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 15:15:53 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/26 19:54:47 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/26 20:35:34 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ void		main_process(void)
 	if ((gnl_ret = get_interactive_line(&line)) < 0)
 		exit (2);			//unexpected case
 	if (gnl_ret == 0)		//ctrl + D
+	{
+		write(1, "exit\n", 5);
 		exit(0); // command_exit yet
+	}
 	if ((command_lines = split_line((const char *)line)))
 	{
 		/*

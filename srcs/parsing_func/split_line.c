@@ -72,6 +72,13 @@ static int		parse_env_variables(const char *line, char **p_data, size_t *p_start
 		len++;
 	if (!len)		//not count $! or $#
 	{
+		if (line[start] == '?')
+		{
+			*p_start += 2;
+			start = 0;
+			len = ft_strlen(ret_str);
+			return (update_data(ret_str, p_data, &start, &len));
+		}
 		len = 1;
 		return (update_data(line, p_data, p_start, &len));
 	}
