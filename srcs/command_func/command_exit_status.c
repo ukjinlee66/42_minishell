@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   uppercase_conversion.c                             :+:      :+:    :+:   */
+/*   command_exit_status.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/18 17:21:27 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/26 19:04:16 by youlee           ###   ########.fr       */
+/*   Created: 2021/01/26 18:49:52 by youlee            #+#    #+#             */
+/*   Updated: 2021/01/26 18:54:10 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+// $? command process
 
-char	*uppercase_conversion(char *str)
+void	command_exit_status(char **argv, int *receiver, int *sender)
 {
-	int len;
-
-	if (*str == NULL)
-		return (NULL);
-	len = 0;
-	while (str[len])
-	{
-		if (65 <= str[len] && str[len] <= 90)
-			str[len] += 32;
-		len++;
-	}
-	return (str);
+	write(1, ret_val, ft_strlen(ret_val) + 1);
 }

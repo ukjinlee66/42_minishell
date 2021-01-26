@@ -74,6 +74,7 @@ char		*make_com(char *argv);
 char		**make_envp(void);
 void		launch_excutable(char **argv, int *receiver, int *sender);
 void		command_absolute_run(char **argv, int *receiver, int *sender);
+void		command_exit_status(char **argv, int *receiver, int *sender);
 /*
 **		list_func.c
 */
@@ -137,4 +138,5 @@ char	envl[2048][2048]; //2048 x 2048 env array
 char	soenvl[2048][2048]; //sort env array
 char	print_buf[2048]; // print variable buf
 DIR		*dp; //directory variable
+char	*ret_val; // return value
 #endif
