@@ -22,7 +22,7 @@ int			arg_pipe(t_list **p_first_elem, t_list *before, int *receiver, int *sender
 		receiver[1] = -1;
 		sender[0] = -1;
 		handle_command(&current, receiver, sender);
-//		exit(0); not end program
+		exit(0); //not end program
 	}
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 16:23:44 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/20 03:36:18 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/26 19:55:15 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,8 @@ void	handle_command(t_list **p_first_elem, int *receiver,
 	else if (arg_type == 5)
 		arg_pipe(p_first_elem, before, receiver ,sender);
 	else
+	{
 		execute_command(*p_first_elem, 0, receiver, sender);
+		wait(0);
+	}
 }

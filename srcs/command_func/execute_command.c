@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:21:57 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/26 18:51:01 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/26 19:55:58 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 	char		buf[IO_BUF_SIZE];
 
 	argv = construct_argv(list_start, list_end);
+	if (argv[0] == 0)
+		return (0);
 	argv[0] = uppercase_conversion(argv[0]);
 //	printf("\nmy pid : %d sender : %d receiver : %d\n",getpid(),sender[0], receiver[0]);
 	if (!ft_strcmp(argv[0], "echo"))
