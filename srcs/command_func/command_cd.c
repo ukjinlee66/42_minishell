@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 19:57:26 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/26 19:44:19 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/26 20:32:52 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -29,12 +29,12 @@ int		command_cd(char **argv, int *receiver, int *sender)
 	}
 	else
 	{
-		cd_home();
+		return (cd_home());
 	}
 	return (0);
 }
 
-void	cd_home(void)
+int		cd_home(void)
 {
 	char	**name_value;
 	char	path[2048];
@@ -43,13 +43,14 @@ void	cd_home(void)
 	if ((idx = get_env_list("HOME")) == -1)
 	{
 		write(1, "HOME not set\n", 13);
-		return ;
+		return (1);
 	}
 	name_value = ft_split(envl[idx], '=');
 	if ((dp = opendir(name_value[1])) == NULL) //error case
 	{
 		write(1, strerror(errno), ft_strlen(strerror(errno)) + 1);
 		write(1, "\n", 1);
+		return (1);
 	}
 	else
 	{
@@ -60,4 +61,5 @@ void	cd_home(void)
 	free(name_value[0]);
 	free(name_value[1]);
 	free(name_value);
+	return (0);
 }

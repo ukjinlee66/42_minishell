@@ -62,7 +62,7 @@ int			command_exit(char **argv);
 */
 int			command_echo(char **argv, int *receiver, int *sender);
 int			command_cd(char **argv, int *receiver, int *sender);
-void		cd_home(void);
+int			cd_home(void);
 int			command_env(char **argv, int *receiver, int *sender);
 int			command_pwd(char **argv, int *receiver, int *sender);
 int			command_unset(char **argv, int *receiver, int *sender);
