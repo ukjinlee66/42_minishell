@@ -6,13 +6,13 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 19:58:55 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/20 02:36:35 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/26 19:57:26 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
 
 
-void	command_relative_run(char **argv, int *receiver, int *sender)
+int		command_relative_run(char **argv, int *receiver, int *sender)
 {
 	int		idx;
 	char	*path;
@@ -25,7 +25,13 @@ void	command_relative_run(char **argv, int *receiver, int *sender)
 	argv[0] = command;
 	idx = 0;
 	if (execve(path, argv, envp) == -1)
+	{
+		write(1, strerror(errno), ft_strlen(strerror(errno)) + 1);
+		write(1, "\n", 1);
+		return (1);
 		printf("execve relative error\n");
+	}
 	else
 		printf("execve run!\n");
+	return (0);
 }

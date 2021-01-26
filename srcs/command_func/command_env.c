@@ -6,12 +6,12 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 19:58:39 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/13 16:54:26 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/26 19:55:35 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
 
-void	command_env(char **argv, int *receiver, int *sender)
+int		command_env(char **argv, int *receiver, int *sender)
 {
 	int	idx;
 	
@@ -24,4 +24,5 @@ void	command_env(char **argv, int *receiver, int *sender)
 		write(1, "\n", 1);
 		idx++;
 	}
+	return (0);
 }

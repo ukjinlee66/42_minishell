@@ -6,7 +6,7 @@
 /*   By: youlee <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 20:15:57 by youlee            #+#    #+#             */
-/*   Updated: 2020/11/13 20:19:22 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/26 20:25:22 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,5 @@ void	two_pointer_free(char ***argv)
 	while ((*argv)[index])
 		free((*argv)[index++]);
 	free((*argv));
+	(*argv) = 0;
 }

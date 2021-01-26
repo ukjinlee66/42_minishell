@@ -6,13 +6,13 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 19:58:04 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/26 00:48:08 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/26 19:47:43 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	command_unset(char **argv, int *receiver, int *sender)
+int		command_unset(char **argv, int *receiver, int *sender)
 {
 	int idx; //find argv[1] idx.
 	int idx2;
@@ -44,8 +44,10 @@ void	command_unset(char **argv, int *receiver, int *sender)
 	{
 		write(1, strerror(errno), ft_strlen(strerror(errno)));
 		write(1, "\n", 1);
+		return (1);
 		//not find unset case
 	}
+	return (0);
 }
 
 void	clear_soenvl(void)

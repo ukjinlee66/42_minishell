@@ -6,13 +6,13 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 05:45:28 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/20 02:39:32 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/26 19:58:00 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	command_absolute_run(char **argv, int *receiver, int *sender)
+int		command_absolute_run(char **argv, int *receiver, int *sender)
 {
 	int		idx;
 	char	*path;
@@ -25,9 +25,15 @@ void	command_absolute_run(char **argv, int *receiver, int *sender)
 	argv[0] = command;
 	idx = 0;
 	if (execve(path, argv, envp) == -1)
+	{
+		write(1, strerror(errno), ft_strlen(strerror(errno)) + 1);
+		write(1, "\n", 1);
+		return (1);
 		printf("execve absolute error\n");
+	}
 	else
-		printf("execve run!\n");	
+		printf("execve run!\n");
+	return (0);
 }
 
 char	*make_com(char *argv)

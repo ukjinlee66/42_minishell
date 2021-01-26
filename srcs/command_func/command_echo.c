@@ -6,13 +6,13 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 16:15:59 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/21 04:34:25 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/26 20:28:59 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		command_echo(char **argv, int *receiver, int *sender)
+int			command_echo(char **argv, int *receiver, int *sender)
 {
 	int cnt;
 	char *res;
@@ -54,19 +54,20 @@ void		command_echo(char **argv, int *receiver, int *sender)
 			}
 			if (argv[cnt + 1] != NULL)
 				write(fd, " ", 1);
-			free(temp);
+			//free(temp);
 			temp = res;
 			cnt++;
 		}
 		cnt = 0;
 		//clean function two pointer
-		two_pointer_free(&argv);
+		//two_pointer_free(&argv);
 		if (option_val == false)
 			write(fd, "\n", 1);
 		//pipe add code
 		free(temp);
 		//exit(0);
 	}
+	return (0);
 }
 
 void		command_echo2(char **argv, int *receiver, int *sender)

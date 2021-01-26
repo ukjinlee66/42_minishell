@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 20:38:22 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/26 19:00:37 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/26 19:56:12 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static	void	no_input(void)
 	}
 }
 
-void	command_export(char **argv, int *receiver, int *sender)
+int		command_export(char **argv, int *receiver, int *sender)
 {
 	char **name_value;
 	
@@ -52,4 +52,5 @@ void	command_export(char **argv, int *receiver, int *sender)
 		free(name_value[1]);
 		free(name_value);
 	}
+	return (0);
 }

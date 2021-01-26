@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:21:57 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/26 19:55:58 by sseo             ###   ########.fr       */
+/*   Updated: 2021/01/26 20:29:45 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,34 +47,37 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 	char		**argv;
 	int			cnt;
 	char		buf[IO_BUF_SIZE];
+	int			ret;
 
+	ret = 0;
 	argv = construct_argv(list_start, list_end);
-	if (argv[0] == 0)
-		return (0);
-	argv[0] = uppercase_conversion(argv[0]);
-//	printf("\nmy pid : %d sender : %d receiver : %d\n",getpid(),sender[0], receiver[0]);
-	if (!ft_strcmp(argv[0], "echo"))
-		command_echo(argv, receiver, sender);
-	else if (!ft_strcmp(argv[0], "cd"))
-		command_cd(argv, receiver, sender);
-	else if (!ft_strcmp(argv[0], "pwd"))
-		command_pwd(argv, receiver, sender);
-	else if (!ft_strcmp(argv[0], "export"))
-		command_export(argv, receiver, sender);
-	else if (!ft_strcmp(argv[0], "unset"))
-		command_unset(argv, receiver, sender);
-	else if (!ft_strcmp(argv[0], "env"))
-		command_env(argv, receiver, sender);
-	else if (!ft_strcmp(argv[0], "exit"))
-		exit(1);
-	else if (argv[0][0] == '/')
-		command_absolute_run(argv, receiver, sender);
-	else if (argv[0][0] == '.' && argv[0][1] == '/')
-		command_relative_run(argv, receiver, sender);
-	else if (argv[0][0] == '$' && argv[0][1] == '?')
-		command_exit_status(argv, receiver, sender);
-	else
-		launch_excutable(argv, receiver, sender); //error case	
+//	printf("\nmy pid : %d argv[0] : %p\n",getpid(), argv[0]);
+	if (argv[0] != 0)
+	{
+		argv[0] = uppercase_conversion(argv[0]);
+		if (!ft_strcmp(argv[0], "echo"))
+			ret = command_echo(argv, receiver, sender);
+		else if (!ft_strcmp(argv[0], "cd"))
+			ret = command_cd(argv, receiver, sender);
+		else if (!ft_strcmp(argv[0], "pwd"))
+			ret = command_pwd(argv, receiver, sender);
+		else if (!ft_strcmp(argv[0], "export"))
+			ret = command_export(argv, receiver, sender);
+		else if (!ft_strcmp(argv[0], "unset"))
+			ret = command_unset(argv, receiver, sender);
+		else if (!ft_strcmp(argv[0], "env"))
+			ret = command_env(argv, receiver, sender);
+		else if (!ft_strcmp(argv[0], "exit"))
+			exit(1);
+		else if (argv[0][0] == '/')
+			ret = command_absolute_run(argv, receiver, sender);
+		else if (argv[0][0] == '.' && argv[0][1] == '/')
+			ret = command_relative_run(argv, receiver, sender);
+		else
+			ret = launch_excutable(argv, receiver, sender); //error case	
+	}
+	ret_str = ft_itoa(ret);
+	two_pointer_free(&argv);
 	if (sender[0] == -1) // 마지막명령일경우
 	{
 		//printf("run kill!\n");
@@ -119,5 +122,6 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 		cnt++;
 	}
 	*/
-	return (0);
+	printf("ret string : %s\n",ret_str);
+	return (ret);
 }

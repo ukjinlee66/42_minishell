@@ -54,27 +54,25 @@ int			arg_pipe(t_list **p_first_elem, t_list *before, int *pipe_in, int *pipe_ou
 */
 void		handle_command(t_list **p_first_elem, int *pipe_in, int *pipe_out);
 int			execute_command(t_list *list_start, t_list *list_end, int *pipe_in, int *pipe_out);
-void		command_exit(void);
+int			command_exit(char **argv);
 
 
 /*
 **		command functions
 */
-void		command_echo(char **argv, int *receiver, int *sender);
-void		command_cd(char **argv, int *receiver, int *sender);
+int			command_echo(char **argv, int *receiver, int *sender);
+int			command_cd(char **argv, int *receiver, int *sender);
 void		cd_home(void);
-void		command_env(char **argv, int *receiver, int *sender);
-void		command_exit(void);
-void		command_pwd(char **argv, int *receiver, int *sender);
-void		command_unset(char **argv, int *receiver, int *sender);
+int			command_env(char **argv, int *receiver, int *sender);
+int			command_pwd(char **argv, int *receiver, int *sender);
+int			command_unset(char **argv, int *receiver, int *sender);
 void		clear_soenvl(void);
-void		command_export(char **argv, int *receiver, int *sender);
-void		command_relative_run(char **argv, int *receiver, int *sender);
+int			command_export(char **argv, int *receiver, int *sender);
+int			command_relative_run(char **argv, int *receiver, int *sender);
 char		*make_com(char *argv);
 char		**make_envp(void);
-void		launch_excutable(char **argv, int *receiver, int *sender);
-void		command_absolute_run(char **argv, int *receiver, int *sender);
-void		command_exit_status(char **argv, int *receiver, int *sender);
+int			launch_excutable(char **argv, int *receiver, int *sender);
+int			command_absolute_run(char **argv, int *receiver, int *sender);
 /*
 **		list_func.c
 */
@@ -111,6 +109,8 @@ char		*ft_strdup(const char *src);
 char		**ft_split(const char *s, char c);
 char		*ft_strchr(const char *src, int c);
 void		*ft_memset(void *src, int c, size_t n);
+char		*ft_itoa(int n);
+int			ft_atoi(const char *nptr);
 /*
 **		util
 */
@@ -138,5 +138,5 @@ char	envl[2048][2048]; //2048 x 2048 env array
 char	soenvl[2048][2048]; //sort env array
 char	print_buf[2048]; // print variable buf
 DIR		*dp; //directory variable
-char	*ret_val; // return value
+char	*ret_str; // return value
 #endif

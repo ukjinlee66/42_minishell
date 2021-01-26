@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 17:21:27 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/26 19:04:16 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/26 19:17:55 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ char	*uppercase_conversion(char *str)
 {
 	int len;
 
-	if (*str == NULL)
-		return (NULL);
 	len = 0;
 	while (str[len])
 	{

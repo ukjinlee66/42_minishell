@@ -27,7 +27,6 @@ SRCS = srcs/main.c							\
 	   srcs/command_func/command_unset.c		\
 	   srcs/command_func/launch_excutable.c		\
 	   srcs/command_func/command_absolute_run.c \
-	   srcs/command_func/command_exit_status.c \
 	   srcs/parsing_func/list_func.c		\
 	   srcs/parsing_func/split_line.c		\
 	   srcs/parsing_func/parsing_tool.c		\
