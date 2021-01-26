@@ -57,6 +57,38 @@ static int		flush_data(t_list **p_out, const char *line, char **p_data, size_t *
 	return (0);
 }
 
+static int		parse_env_variables(const char *line, char **p_data, size_t *p_start)
+{
+	size_t		len;
+	size_t		start;
+	char		*target_variable;
+	int			env_idx;
+
+	len = 0;
+	start = *p_start + 1;
+	while ((line[start + len] >= 'a' && line[start + len] <= 'z') || \
+			(line[start + len] >= 'A' && line[start + len] <= 'Z') || \
+			(line[start + len] >= '0' && line[start + len] <= '9'))
+		len++;
+	if (!len)		//not count $! or $#
+	{
+		len = 1;
+		return (update_data(line, p_data, p_start, &len));
+	}
+	if (!(target_variable = ft_substr(line, (unsigned int)start, len)))
+		return (1);		//malloc failed
+	env_idx = get_env_list(target_variable);
+	free(target_variable);
+	*p_start = start + len;
+	if (env_idx >= 0)
+	{
+		start = len + 1;
+		len = ft_strlen(envl[env_idx]) - start;
+		return (update_data(envl[env_idx], p_data, &start, &len));
+	}
+	return (0);
+}
+
 static int		parse_double_quote(const char *line, char **p_data, size_t *p_start)
 {
 	size_t			len;
@@ -82,29 +114,8 @@ static int		parse_double_quote(const char *line, char **p_data, size_t *p_start)
 		{
 			if (update_data(line, p_data, &start, &len))
 				return (1);
-			start++;
-			while ((line[start + len] >= 'a' && line[start + len] <= 'z') || \
-					(line[start + len] >= 'A' && line[start + len] <= 'Z') || \
-					(line[start + len] >= '0' && line[start + len] <= '9'))
-				len++;
-			if (!len)
-			{
-				start--;
-				len++;
-				continue ;
-			}
-			if (!(tmp_s = ft_substr(line, (unsigned int)start, len)))
-				return (1);			//malloc fail
-			tmp_idx = get_env_list(tmp_s);
-			if (tmp_idx >= 0)
-			{
-				tmp_start = len + 1;
-				tmp_len = strlen(envl[tmp_idx]) - tmp_start;
-				if (update_data(envl[tmp_idx], p_data, &tmp_start, &tmp_len))
-					return (1);
-			}
-			start += len;
-			len = 0;
+			if (parse_env_variables(line, p_data, &start))
+				return (1);
 		}
 		else if (line[start + len] == 0)
 			return (2);			//multiple commands
@@ -149,10 +160,12 @@ static int		split_line_main(t_list **p_out, char **p_data, const char *line)
 	while ((c = line[start + len]) && !my_errno)
 	{
 		if (c == ';' || c == '>' || c == '<' || c == '|' || c == ' ' || \
-				c == '\'' || c == '\"' || c == '\\')
+				c == '\'' || c == '\"' || c == '\\' || c == '$')
 			my_errno |= update_data(line, p_data, &start, &len);
 		if (c == ';' || c == '>' || c == '<' || c == '|' || c == ' ')
 			my_errno |= flush_data(p_out, line, p_data, &start);
+		else if (c == '$')
+			my_errno |= parse_env_variables(line, p_data, &start);
 		else if (c == '\'')
 		{
 			my_errno |= parse_single_quote(line, p_data, &start);
