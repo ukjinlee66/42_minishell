@@ -11,8 +11,8 @@
 - [x] export without any options<br>
 - [x] unset without any options<br>
 - [x] env without any options and any arguments ◦ exit without any options<br>
-- [ ] ; in the command should separate commands like in bash<br>
-- [ ] ’ and " should work like in bash except for multiline commands<br>
+- [x] ; in the command should separate commands like in bash<br>
+- [x] ’ and " should work like in bash except for multiline commands<br>
 - [ ] Redirections < > “>>” should work like in bash except for file descriptor aggregation<br>
 - [ ] Pipes | should work like in bash<br>
 - [x] Environment variables ($ followed by characters) should work like in bash • $? should work like in bash<br>
