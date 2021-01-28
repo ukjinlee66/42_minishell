@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:21:57 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/28 15:10:30 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/28 15:56:34 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 //	printf("\nmy pid : %d argv[0] : %p\n",getpid(), argv[0]);
 	if (argv[0] != 0)
 	{
+		/*
 		if (receiver[0] != -1) //pipe in data
 		{
 			dup2(receiver[0], 0); //표준 입력 치환
@@ -67,6 +68,7 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 			//close(receiver[1]);
 			//close(sender[0]);
 		}
+		*/
 		argv[0] = uppercase_conversion(argv[0]);
 		if (!ft_strcmp(argv[0], "echo"))
 			ret = command_echo(argv, receiver, sender);
