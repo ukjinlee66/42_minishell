@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 15:15:53 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/26 20:35:34 by sseo             ###   ########.fr       */
+/*   Updated: 2021/01/28 15:13:03 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void		main_process(void)
 		int		sender[1000];
 		receiver[0] = -1;
 		sender[0] = -1;
+		ret_str = ft_strdup("0");
 		handle_command(&command_lines, receiver, sender);
 	}
 }

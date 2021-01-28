@@ -136,7 +136,7 @@ void	set_env_list2(char *name, char *value);
 char	cur_path[PATH_SIZE];
 char	envl[2048][2048]; //2048 x 2048 env array
 char	soenvl[2048][2048]; //sort env array
-char	print_buf[2048]; // print variable buf
+char	print_buf[2048]; // print variable buf pipe in or out
 DIR		*dp; //directory variable
 char	*ret_str; // return value
 #endif

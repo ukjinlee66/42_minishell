@@ -6,13 +6,14 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 19:57:26 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/26 20:32:52 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/28 14:47:36 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
 
 int		command_cd(char **argv, int *receiver, int *sender)
 {
+	printf("call command cd \n");
 	if (argv[1])
 	{
 		if ((dp = opendir(argv[1])) == NULL) //error case

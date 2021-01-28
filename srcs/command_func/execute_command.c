@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:21:57 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/26 20:29:45 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/28 15:10:30 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,19 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 //	printf("\nmy pid : %d argv[0] : %p\n",getpid(), argv[0]);
 	if (argv[0] != 0)
 	{
+		if (receiver[0] != -1) //pipe in data
+		{
+			dup2(receiver[0], 0); //표준 입력 치환
+			//close(sender[0]);
+			//read(receiver[0], print_buf, 1000);
+		}
+		if (sender[0] != -1)
+		{
+			dup2(sender[0], 1); //표준 출력 치환
+			//close(receiver[0]);
+			//close(receiver[1]);
+			//close(sender[0]);
+		}
 		argv[0] = uppercase_conversion(argv[0]);
 		if (!ft_strcmp(argv[0], "echo"))
 			ret = command_echo(argv, receiver, sender);
@@ -76,6 +89,8 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 		else
 			ret = launch_excutable(argv, receiver, sender); //error case	
 	}
+	//if (sender[0] != -1) //pipe out data
+	//	write(sender[0], print_buf, ft_strlen(print_buf) + 1);
 	ret_str = ft_itoa(ret);
 	two_pointer_free(&argv);
 	if (sender[0] == -1) // 마지막명령일경우
@@ -83,6 +98,7 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 		//printf("run kill!\n");
 		//kill(0, SIGKILL);
 	}
+	
 	/*
 	int			read_len;
 
