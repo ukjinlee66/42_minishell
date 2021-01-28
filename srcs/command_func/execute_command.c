@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:21:57 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/28 15:56:34 by sseo             ###   ########.fr       */
+/*   Updated: 2021/01/28 16:42:44 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,17 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 			//close(sender[0]);
 			//read(receiver[0], print_buf, 1000);
 		}
+		*/
+		int test = open("dummy", O_WRONLY | O_CREAT);
 		if (sender[0] != -1)
 		{
-			dup2(sender[0], 1); //표준 출력 치환
+			close(test);
+			dup2(0, test);
+			dup2(sender[0], 0); //표준 출력 치환
 			//close(receiver[0]);
 			//close(receiver[1]);
 			//close(sender[0]);
 		}
-		*/
 		argv[0] = uppercase_conversion(argv[0]);
 		if (!ft_strcmp(argv[0], "echo"))
 			ret = command_echo(argv, receiver, sender);
@@ -90,6 +93,10 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 			ret = command_relative_run(argv, receiver, sender);
 		else
 			ret = launch_excutable(argv, receiver, sender); //error case	
+		if (sender[0] != -1)
+		{
+			dup2(test, 0);
+		}
 	}
 	//if (sender[0] != -1) //pipe out data
 	//	write(sender[0], print_buf, ft_strlen(print_buf) + 1);
