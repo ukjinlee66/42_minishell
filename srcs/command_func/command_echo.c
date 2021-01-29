@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 16:15:59 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/28 16:43:22 by sseo             ###   ########.fr       */
+/*   Updated: 2021/01/30 03:30:51 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int			command_echo(char **argv, int *receiver, int *sender)
 {
-	printf("call command echo\n");
 	int cnt;
 	char *res;
 	char *temp;
@@ -22,11 +21,11 @@ int			command_echo(char **argv, int *receiver, int *sender)
 	bool option_val;
 
 	int i = 0;
-	if (receiver[0] != -1) //test code
-	{
-		read(receiver[0], print_buf, 1000);
+	//if (receiver[0] != -1) //test code
+	//{
+	//	read(receiver[0], print_buf, 1000);
 //		printf("i am receive %s\n",print_buf);
-	}
+	//}
 	option_val = false;
 //	if (sender[0] == -1)
 //		fd = 1;
@@ -50,8 +49,8 @@ int			command_echo(char **argv, int *receiver, int *sender)
 			ft_putstr_fd(argv[cnt], 1);
 			if (sender[0] != -1)
 			{
-				ft_strlcpy(print_buf, argv[cnt], ft_strlen(argv[cnt]) + 2);
-				write(sender[0], print_buf, ft_strlen(print_buf) + 1);
+				ft_strlcpy(print_buf, argv[cnt], ft_strlen(argv[cnt]) + 1);
+				write(1, print_buf, ft_strlen(print_buf) + 1);
 			}
 			if (argv[cnt + 1] != NULL)
 				write(1, " ", 1);

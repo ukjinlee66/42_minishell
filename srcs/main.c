@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 15:15:53 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/28 15:43:18 by sseo             ###   ########.fr       */
+/*   Updated: 2021/01/30 04:05:37 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void		main_process(void)
 		receiver[0] = -1;
 		sender[0] = -1;
 		handle_command(&command_lines, receiver, sender);
+		printf("out handle\n");
 	}
 }
 
@@ -61,6 +62,7 @@ int			main(int argc, char **argv, char **envp)
 			write(1, cur_path, ft_strlen(cur_path));
 			write(1, "$ ", 2);
 			main_process();
+			printf("out mainprocess\n");
 		}
 	}
 	else
