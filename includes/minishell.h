@@ -129,6 +129,9 @@ void	set_env_list(char *name, char *value);
 void	add_double(char (*env)[2048]);
 int		get_soenv_list(char *chr);
 void	set_env_list2(char *name, char *value);
+void	handle_sig(int sig_num);
+void	handle_sig2(int sig_num);
+
 /*
 **		variable
 */

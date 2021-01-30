@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 15:15:53 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/30 04:05:37 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/30 14:55:11 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int			main(int argc, char **argv, char **envp)
 		copy_env_list(envp); //envp -> envl copy
 		while (1)
 		{
+			signal(SIGINT, handle_sig);
+			signal(SIGQUIT, handle_sig2);
 			getcwd(cur_path, PATH_SIZE);
 			write(1, cur_path, ft_strlen(cur_path));
 			write(1, "$ ", 2);
