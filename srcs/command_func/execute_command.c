@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:21:57 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/30 03:42:41 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/30 13:49:45 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 	int			cnt;
 	char		buf[IO_BUF_SIZE];
 	int			ret;
+	int			tmp_fd;
 
 	ret = 0;
 	argv = construct_argv(list_start, list_end);
@@ -72,6 +73,7 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 		}
 		else if (sender[0] != -1 && receiver[0] == -1)//first process
 		{
+			tmp_fd = dup(1);
 			//close(test);
 			//dup2(0, test);
 			dup2(sender[0], 1); //표준 출력 치환
@@ -115,6 +117,12 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 			ret = launch_excutable(argv, receiver, sender); //error case	
 		//if (sender[0] != -1 && receiver[0] != -1)
 		//	dup2(test, 0);
+		if (sender[0] != -1 && receiver[0] == -1)//first process
+		{
+			//close(test);
+			//dup2(0, test);
+			dup2(tmp_fd, 1); //표준 출력 치환
+		}
 	}
 	//if (sender[0] != -1) //pipe out data
 	//	write(sender[0], print_buf, ft_strlen(print_buf) + 1);
