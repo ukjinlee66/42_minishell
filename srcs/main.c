@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 15:15:53 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/30 14:55:11 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/30 16:10:26 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ void		main_process(void)
 	int				gnl_ret;
 	pid_t			pid_num;
 
+	getcwd(cur_path, PATH_SIZE);
+	write(1, cur_path, ft_strlen(cur_path));
+	write(1, "$ ", 2);
 	if ((gnl_ret = get_interactive_line(&line)) < 0)
 		exit (2);			//unexpected case
 	if (gnl_ret == 0)		//ctrl + D
@@ -46,7 +49,6 @@ void		main_process(void)
 		receiver[0] = -1;
 		sender[0] = -1;
 		handle_command(&command_lines, receiver, sender);
-		printf("out handle\n");
 	}
 }
 
@@ -58,13 +60,9 @@ int			main(int argc, char **argv, char **envp)
 		copy_env_list(envp); //envp -> envl copy
 		while (1)
 		{
-			signal(SIGINT, handle_sig);
-			signal(SIGQUIT, handle_sig2);
-			getcwd(cur_path, PATH_SIZE);
-			write(1, cur_path, ft_strlen(cur_path));
-			write(1, "$ ", 2);
+			signal(SIGINT, handle_sig); // ctrl - C
+			signal(SIGQUIT, handle_sig2); // ctrl -
 			main_process();
-			printf("out mainprocess\n");
 		}
 	}
 	else

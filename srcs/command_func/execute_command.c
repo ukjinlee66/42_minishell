@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:21:57 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/30 13:49:45 by sseo             ###   ########.fr       */
+/*   Updated: 2021/01/30 16:09:58 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,48 +52,21 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 
 	ret = 0;
 	argv = construct_argv(list_start, list_end);
-	printf("\nmy pid : %d\n",getpid());
-	int i = -1;
-	while (sender[i++] != -1)
-		printf("sender[%d] : %d\n",i,sender[i]);
-	i = -1;
-	while (receiver[i++] != -1)
-		printf("receiver[%d] : %d\n",i,receiver[i]);
 	if (argv[0] != 0)
 	{
 		
 		if (receiver[0] != -1 && sender[0] == -1) //last process
-		{
 			dup2(receiver[0], 0); //표준 입력 치환
-			//close(sender[0]);
-			//read(receiver[0], print_buf, 1000);
-			//printf("last print buf : %s\n",print_buf);
-			//close(receiver[1]);
-			//close(receiver[0]);
-		}
 		else if (sender[0] != -1 && receiver[0] == -1)//first process
 		{
 			tmp_fd = dup(1);
-			//close(test);
-			//dup2(0, test);
 			dup2(sender[0], 1); //표준 출력 치환
-			//close(receiver[0]);
-			//close(sender[1]);
-			//close(sender[0]);
 		}
 		else if (sender[0] != -1 && receiver[0] != -1)//mid process
 		{
 			dup2(sender[0], 1);
 			dup2(receiver[0], 0);
-			//read(receiver[0], print_buf, 1000);
-			//printf("\nmid print buf : %s\n",print_buf);
-			//close(receiver[1]);
-			//close(sender[1]);
-			//close(receiver[0]);
-			//close(sender[0]);
-			
 		}
-		//int test = open("dummy", O_WRONLY | O_CREAT);
 		argv[0] = uppercase_conversion(argv[0]);
 		if (!ft_strcmp(argv[0], "echo"))
 			ret = command_echo(argv, receiver, sender);
@@ -173,6 +146,5 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 		cnt++;
 	}
 	*/
-	printf("ret string : %s\n",ret_str);
 	return (ret);
 }

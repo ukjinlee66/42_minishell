@@ -142,4 +142,5 @@ char	soenvl[2048][2048]; //sort env array
 char	print_buf[2048]; // print variable buf pipe in or out
 DIR		*dp; //directory variable
 char	*ret_str; // return value
+bool	pid_stat; // true - 부모 false - 자식
 #endif

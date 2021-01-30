@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 16:23:44 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/30 04:06:35 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/30 16:10:12 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ void	handle_command(t_list **p_first_elem, int *receiver,
 	else
 	{
 		execute_command(*p_first_elem, 0, receiver, sender);
-		printf("exit execute_command\n");
 		wait(0);
-		printf("exit wait(0)\n");
 	}
 	return ;
 }
