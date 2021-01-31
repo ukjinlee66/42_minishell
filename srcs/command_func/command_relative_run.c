@@ -6,11 +6,11 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 19:58:55 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/26 19:57:26 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/31 23:43:22 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "minishell.h"
 
+#include "minishell.h"
 
 int		command_relative_run(char **argv, int *receiver, int *sender)
 {
@@ -29,9 +29,7 @@ int		command_relative_run(char **argv, int *receiver, int *sender)
 		write(1, strerror(errno), ft_strlen(strerror(errno)) + 1);
 		write(1, "\n", 1);
 		return (1);
-		printf("execve relative error\n");
 	}
 	else
-		printf("execve run!\n");
-	return (0);
+		return (0);
 }

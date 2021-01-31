@@ -6,16 +6,17 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 19:57:26 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/28 16:18:55 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/31 23:26:10 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "minishell.h"
 
 int		command_cd(char **argv, int *receiver, int *sender)
 {
 	if (argv[1])
 	{
-		if ((dp = opendir(argv[1])) == NULL) //error case
+		if ((dp = opendir(argv[1])) == NULL)
 		{
 			write(1, strerror(errno), ft_strlen(strerror(errno)) + 1);
 			write(1, "\n", 1);
@@ -24,7 +25,7 @@ int		command_cd(char **argv, int *receiver, int *sender)
 		else
 		{
 			chdir(argv[1]);
-			getcwd(cur_path, PATH_SIZE); //current path
+			getcwd(cur_path, PATH_SIZE);
 		}
 	}
 	else
@@ -46,7 +47,7 @@ int		cd_home(void)
 		return (1);
 	}
 	name_value = ft_split(envl[idx], '=');
-	if ((dp = opendir(name_value[1])) == NULL) //error case
+	if ((dp = opendir(name_value[1])) == NULL)
 	{
 		write(1, strerror(errno), ft_strlen(strerror(errno)) + 1);
 		write(1, "\n", 1);
@@ -54,9 +55,8 @@ int		cd_home(void)
 	}
 	else
 	{
-		getcwd(cur_path, PATH_SIZE); //current path
 		chdir(name_value[1]);
-		getcwd(cur_path, PATH_SIZE); //current path
+		getcwd(cur_path, PATH_SIZE);
 	}
 	free(name_value[0]);
 	free(name_value[1]);

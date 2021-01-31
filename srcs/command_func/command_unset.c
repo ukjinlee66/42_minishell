@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 19:58:04 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/26 19:47:43 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/31 23:45:08 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 int		command_unset(char **argv, int *receiver, int *sender)
 {
-	int idx; //find argv[1] idx.
-	int idx2;
+	int	idx;
+	int	idx2;
 
 	idx = get_env_list(argv[1]);
 	if (idx)
 	{
-		//delete argv[1] env variable
 		idx2 = idx;
 		while (envl[idx][0])
 		{
@@ -37,27 +36,23 @@ int		command_unset(char **argv, int *receiver, int *sender)
 			idx2++;
 		}
 		soenvl[idx2 - 1][0] = '\0';
-		//clear_soenvl();
-		//envl_sort();
 	}
 	else
 	{
 		write(1, strerror(errno), ft_strlen(strerror(errno)));
 		write(1, "\n", 1);
 		return (1);
-		//not find unset case
 	}
 	return (0);
 }
 
 void	clear_soenvl(void)
 {
-	int idx;
-	
+	int	idx;
+
 	idx = 0;
 	while (soenvl[idx][0])
 	{
-		//soenvl[idx] = NULL;
 		ft_memset(soenvl[idx], ' ', ft_strlen(soenvl[idx]));
 		idx++;
 	}
