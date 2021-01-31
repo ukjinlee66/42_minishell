@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 15:15:53 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/30 16:10:26 by youlee           ###   ########.fr       */
+/*   Updated: 2021/01/31 23:13:59 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,35 +17,21 @@ void		main_process(void)
 	t_list			*command_lines;
 	char			*line;
 	int				gnl_ret;
-	pid_t			pid_num;
+	int				receiver[1000];
+	int				sender[1000];
 
 	getcwd(cur_path, PATH_SIZE);
 	write(1, cur_path, ft_strlen(cur_path));
 	write(1, "$ ", 2);
 	if ((gnl_ret = get_interactive_line(&line)) < 0)
-		exit (2);			//unexpected case
-	if (gnl_ret == 0)		//ctrl + D
+		exit(2);
+	if (gnl_ret == 0)
 	{
 		write(1, "exit\n", 5);
-		exit(0); // command_exit yet
+		exit(0);
 	}
 	if ((command_lines = split_line((const char *)line)))
 	{
-		/*
-		t_list			*test;
-		char			*test_str;
-
-		test = command_lines;
-		while (test)
-		{
-			test_str = (char *)test->data;
-			printf("test for parsing: %s -> %lu\n", test_str, \
-					ft_strlen((const char *)test_str));
-			test = test->next;
-		}
-		*/
-		int		receiver[1000];
-		int		sender[1000];
 		receiver[0] = -1;
 		sender[0] = -1;
 		handle_command(&command_lines, receiver, sender);
@@ -57,17 +43,13 @@ int			main(int argc, char **argv, char **envp)
 	if (argc == 1)
 	{
 		ret_str = ft_strdup("0");
-		copy_env_list(envp); //envp -> envl copy
+		copy_env_list(envp);
 		while (1)
 		{
-			signal(SIGINT, handle_sig); // ctrl - C
-			signal(SIGQUIT, handle_sig2); // ctrl -
+			signal(SIGINT, handle_sig);
+			signal(SIGQUIT, handle_sig2);
 			main_process();
 		}
-	}
-	else
-	{
-
 	}
 	return (0);
 }
