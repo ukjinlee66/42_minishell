@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 16:15:59 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/01 14:39:13 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/01 16:03:20 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			command_echo(char **argv, int *receiver, int *sender)
 	option_val = false;
 	cnt = 1;
 	if (argv[1] == NULL)
-		write(1, "\n", 5);
+		write(1, "\n", 1);
 	else
 	{
 		temp = ft_strjoin("", "");
@@ -35,12 +35,8 @@ int			command_echo(char **argv, int *receiver, int *sender)
 				continue;
 			}
 			res = ft_strjoin(temp, argv[cnt]);
-			ft_putstr_fd(argv[cnt], 1);
-			if (sender[0] != -1)
-			{
-				//ft_strlcpy(g_print_buf, argv[cnt], ft_strlen(argv[cnt]) + 1);
-				write(1, argv[cnt], ft_strlen(argv[cnt]) + 1);
-			}
+			ft_strlcpy(g_print_buf, argv[cnt], ft_strlen(argv[cnt]) + 1);
+			write(1, g_print_buf, ft_strlen(g_print_buf));
 			if (argv[cnt + 1] != NULL)
 				write(1, " ", 1);
 			temp = res;
