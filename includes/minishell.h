@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:02:53 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/01 15:50:32 by sseo             ###   ########.fr       */
+/*   Updated: 2021/02/01 16:19:23 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void				arg_semicolon(t_list **p_first_elem, t_list *target,
 void				arg_pipe(t_list **p_first_elem, t_list *before,
 		int *pipe_in, int *pipe_out);
 void				control_sender(int *sender, int new_pipe);
+void				control_open_error(char *file_name, int eno, t_list *first_elem);
 /*
 **					commands
 */

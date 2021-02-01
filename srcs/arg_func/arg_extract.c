@@ -6,7 +6,7 @@
 /*   By: sseo <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 15:36:34 by sseo              #+#    #+#             */
-/*   Updated: 2021/02/01 15:57:08 by sseo             ###   ########.fr       */
+/*   Updated: 2021/02/01 16:29:55 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,12 @@ static void		arg_part(int fd_in, int fd)
 	char		buf[IO_BUF_SIZE + 1];
 	int			read_len;
 
-	if ((read_len = read(fd_in, buf, sizeof(buf))) >= 0)
+	if ((read_len = read(fd_in, buf, IO_BUF_SIZE)) > 0)
 	{
 		buf[read_len - 1] = '\n';
-		printf("test: %d\n", read_len);
 		write(fd, buf, read_len);
 	}
-	else
+	else if (read_len < 0)
 		write(1, "unexpected error!!\n", 19);
 	close(fd);
 	close(fd_in);
@@ -34,18 +33,13 @@ void			arg_extract(t_list **p_first_elem, t_list *before, int *receiver, int *se
 {
 	int			fd;
 	pid_t		pid_num;
-	int			statloc;
 	int			new_pipe[2];
 	char		*file_name;
-	char		*str;
 
 	file_name = edit_list4redirection(p_first_elem, before);
-	if ((fd = open(file_name, O_RDWR | O_CREAT | O_APPEND, 0664)) < 0)
+	if ((fd = open(file_name, O_WRONLY | O_CREAT | O_APPEND, 0664)) < 0)
 	{
-		free(file_name);
-		str = strerror(errno);
-		write(1, str, ft_strlen(str));
-		write(1, "\n", 1);
+		control_open_error(file_name, errno, *p_first_elem);
 		control_sender(sender, -1);
 	}
 	else

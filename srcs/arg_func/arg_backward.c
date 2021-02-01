@@ -1,34 +1,47 @@
 #include "minishell.h"
 
-static void	arg_part(const char *file_name, int fd_out)
+static void	arg_part(int fd_out, int fd)
 {
 	char		buf[IO_BUF_SIZE + 1];
 	int			write_len;
 
-	strcpy(buf, file_name);
-	if ((write_len = write(fd_out, buf, ft_strlen((const char *)buf))) < 0)
-		write(1, "error!!\n", 8);
+	if ((write_len = read(fd, buf, IO_BUF_SIZE)) < 0)
+		write(1, "unexpected error!!\n", 19);
+	else
+	{
+		buf[write_len] = 0;
+		write(fd_out, buf, write_len);
+	}
+	close(fd);
+	close(fd_out);
 	exit(0);
 }
 
 void		arg_backward(t_list **p_first_elem, t_list *before, int *receiver, int *sender)
 {
+	int			fd;
 	pid_t		pid_num;
 	int			new_pipe[2];
 	char		*file_name;
-	int			cnt;
 
-	cnt = 0;
 	file_name = edit_list4redirection(p_first_elem, before);
-	pipe(new_pipe);
-	if (!(pid_num = fork()))
-		arg_part(file_name, new_pipe[1]);
+	if ((fd = open(file_name, O_RDONLY, 0664)) < 0)
+	{
+		control_open_error(file_name, errno, *p_first_elem);
+		control_sender(sender, -1);
+	}
 	else
 	{
-		while (receiver[cnt] != -1)
-			cnt++;
-		receiver[cnt] = new_pipe[0];
-		receiver[cnt + 1] = -1;
-		handle_command(p_first_elem, receiver, sender);
+		free(file_name);
+		pipe(new_pipe);
+		if (!(pid_num = fork()))
+			arg_part(new_pipe[1], fd);
+		else
+		{
+			close(fd);
+			receiver[0] = new_pipe[0];
+			receiver[1] = -1;
+			handle_command(p_first_elem, receiver, sender);
+		}
 	}
 }
