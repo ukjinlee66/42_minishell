@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 16:15:59 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/01 13:44:15 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/01 14:28:21 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int			command_echo(char **argv, int *receiver, int *sender)
 		write(1, "\n", 5);
 	else
 	{
-		*temp = ft_strjoin("", "");
+		temp = ft_strjoin("", "");
 		while (argv[cnt])
 		{
 			if ((ft_strcmp(argv[cnt], "-n") == 0))
@@ -34,7 +34,7 @@ int			command_echo(char **argv, int *receiver, int *sender)
 				cnt++;
 				continue;
 			}
-			res = ft_strjoin(*temp, argv[cnt]);
+			res = ft_strjoin(temp, argv[cnt]);
 			ft_putstr_fd(argv[cnt], 1);
 			if (sender[0] != -1)
 			{
@@ -43,17 +43,17 @@ int			command_echo(char **argv, int *receiver, int *sender)
 			}
 			if (argv[cnt + 1] != NULL)
 				write(1, " ", 1);
-			*temp = res;
+			temp = res;
 			cnt++;
 		}
 		if (option_val == false)
 			write(1, "\n", 1);
-		free(*temp);
+		free(temp);
 	}
 	return (0);
 }
 
-void		command_echo2(char **argv, int *receiver, int *sender, char **temp)
+void		command_echo2(char **argv, int *receiver, int *sender)
 {
 
 }
