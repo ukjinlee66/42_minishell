@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 15:15:53 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/31 23:13:59 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/01 14:18:16 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void		main_process(void)
 	int				receiver[1000];
 	int				sender[1000];
 
-	getcwd(cur_path, PATH_SIZE);
-	write(1, cur_path, ft_strlen(cur_path));
+	getcwd(g_cur_path, PATH_SIZE);
+	write(1, g_cur_path, ft_strlen(g_cur_path));
 	write(1, "$ ", 2);
 	if ((gnl_ret = get_interactive_line(&line)) < 0)
 		exit(2);
@@ -42,7 +42,7 @@ int			main(int argc, char **argv, char **envp)
 {
 	if (argc == 1)
 	{
-		ret_str = ft_strdup("0");
+		g_ret_str = ft_strdup("0");
 		copy_env_list(envp);
 		while (1)
 		{

@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 19:57:26 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/01 13:11:33 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/01 14:19:25 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		command_cd(char **argv, int *receiver, int *sender)
 {
 	if (argv[1])
 	{
-		if ((dp = opendir(argv[1])) == NULL)
+		if ((g_dp = opendir(argv[1])) == NULL)
 		{
 			write(1, strerror(errno), ft_strlen(strerror(errno)) + 1);
 			write(1, "\n", 1);
@@ -47,7 +47,7 @@ int		cd_home(void)
 		return (1);
 	}
 	name_value = ft_split(g_envl[idx], '=');
-	if ((dp = opendir(name_value[1])) == NULL)
+	if ((g_dp = opendir(name_value[1])) == NULL)
 	{
 		write(1, strerror(errno), ft_strlen(strerror(errno)) + 1);
 		write(1, "\n", 1);
