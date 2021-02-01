@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 15:15:53 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/01 15:04:00 by sseo             ###   ########.fr       */
+/*   Updated: 2021/02/01 17:13:10 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int			main(int argc, char **argv, char **envp)
 	{
 		g_ret_str = ft_strdup("0");
 		copy_env_list(envp);
+		g_pid_stat = true;
 		while (1)
 		{
 			signal(SIGINT, handle_sig);

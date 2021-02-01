@@ -20,7 +20,6 @@ SRCS = srcs/main.c							\
 	   srcs/command_func/handle_command.c	\
 	   srcs/command_func/command_cd.c		\
 	   srcs/command_func/command_echo.c		\
-	   srcs/command_func/command_else.c		\
 	   srcs/command_func/command_env.c		\
 	   srcs/command_func/command_export.c		\
 	   srcs/command_func/command_pwd.c		\
