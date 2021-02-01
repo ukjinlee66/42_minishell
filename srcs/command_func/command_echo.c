@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 16:15:59 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/01 14:28:21 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/01 14:39:13 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int			command_echo(char **argv, int *receiver, int *sender)
 			ft_putstr_fd(argv[cnt], 1);
 			if (sender[0] != -1)
 			{
-				ft_strlcpy(g_print_buf, argv[cnt], ft_strlen(argv[cnt]) + 1);
-				write(1, g_print_buf, ft_strlen(g_print_buf) + 1);
+				//ft_strlcpy(g_print_buf, argv[cnt], ft_strlen(argv[cnt]) + 1);
+				write(1, argv[cnt], ft_strlen(argv[cnt]) + 1);
 			}
 			if (argv[cnt + 1] != NULL)
 				write(1, " ", 1);
