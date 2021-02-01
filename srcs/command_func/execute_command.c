@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:21:57 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/01 15:30:21 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/01 20:10:04 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,17 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 	int			cnt;
 	char		buf[IO_BUF_SIZE];
 	int			ret;
-	int			tmp_fd;
+	int			tmp_fd, tmp_fd2;
 
 	ret = 0;
 	argv = construct_argv(list_start, list_end);
 	if (argv[0] != 0)
 	{
 		if (receiver[0] != -1 && sender[0] == -1)
+		{
+			tmp_fd = dup(0);
 			dup2(receiver[0], 0);
+		}
 		else if (sender[0] != -1 && receiver[0] == -1)
 		{
 			tmp_fd = dup(1);
@@ -62,6 +65,8 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 		}
 		else if (sender[0] != -1 && receiver[0] != -1)
 		{
+			tmp_fd = dup(0);
+			tmp_fd2 = dup(1);
 			dup2(sender[0], 1);
 			dup2(receiver[0], 0);
 		}
@@ -88,6 +93,13 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 			ret = launch_excutable(argv, receiver, sender);
 		if (sender[0] != -1 && receiver[0] == -1)
 			dup2(tmp_fd, 1);
+		else if (receiver[0] != -1 && sender[0] == -1)
+			dup2(tmp_fd, 0);
+		else if (sender[0] != -1 && receiver[0] != -1)
+		{
+			dup2(tmp_fd, 0);
+			dup2(tmp_fd2, 1);
+		}
 	}
 	g_ret_str = ft_itoa(ret);
 	two_pointer_free(&argv);
