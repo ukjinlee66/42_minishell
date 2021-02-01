@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 19:57:26 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/31 23:26:10 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/01 13:11:33 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		command_cd(char **argv, int *receiver, int *sender)
 		else
 		{
 			chdir(argv[1]);
-			getcwd(cur_path, PATH_SIZE);
+			getcwd(g_cur_path, PATH_SIZE);
 		}
 	}
 	else
@@ -46,7 +46,7 @@ int		cd_home(void)
 		write(1, "HOME not set\n", 13);
 		return (1);
 	}
-	name_value = ft_split(envl[idx], '=');
+	name_value = ft_split(g_envl[idx], '=');
 	if ((dp = opendir(name_value[1])) == NULL)
 	{
 		write(1, strerror(errno), ft_strlen(strerror(errno)) + 1);
@@ -56,7 +56,7 @@ int		cd_home(void)
 	else
 	{
 		chdir(name_value[1]);
-		getcwd(cur_path, PATH_SIZE);
+		getcwd(g_cur_path, PATH_SIZE);
 	}
 	free(name_value[0]);
 	free(name_value[1]);

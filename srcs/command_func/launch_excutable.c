@@ -6,9 +6,10 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:09:45 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/30 16:08:49 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/01 13:16:42 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "minishell.h"
 
 int		launch_excutable(char **argv, int *receiver, int *sender)

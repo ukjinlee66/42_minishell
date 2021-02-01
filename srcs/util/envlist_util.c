@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:45:22 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/25 21:48:38 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/01 13:20:14 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	copy_arr(char *a, char *b, int num)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	while (i < num)
@@ -31,7 +31,7 @@ void	copy_arr(char *a, char *b, int num)
 	a[i + num] = '\0';
 }
 
-void	copy_env_list(char **envp) //envp -> envl
+void	copy_env_list(char **envp)
 {
 	int		idx;
 	char	temp[2048];
@@ -39,10 +39,10 @@ void	copy_env_list(char **envp) //envp -> envl
 	idx = 0;
 	while (envp[idx])
 	{
-		copy_arr(envl[idx], envp[idx], 0);
+		copy_arr(g_envl[idx], envp[idx], 0);
 		idx++;
 	}
-	envl[idx][0] = '\0';
+	g_envl[idx][0] = '\0';
 	envl_sort();
 }
 
@@ -56,7 +56,7 @@ void	copy_env_list2(char env[2048][2048],
 	while (env2[idx][0])
 	{
 		copy_arr(env[idx], env2[idx], 11);
-		add_double(&env[idx]);// add double quotes soenvl
+		add_double(&env[idx]);
 		idx++;
 	}
 	env[idx][0] = env2[idx][0];
@@ -68,20 +68,20 @@ void	envl_sort(void)
 	int		idx2;
 	char	temp[2048];
 
-	copy_env_list2(soenvl, envl);
+	copy_env_list2(g_soenvl, g_envl);
 	idx = 0;
-	while (soenvl[idx][11])
+	while (g_soenvl[idx][11])
 	{
 		idx2 = 0;
-		while (soenvl[idx2][11])
+		while (g_soenvl[idx2][11])
 		{
 			if (idx == idx2)
 				idx2++;
-			if (soenvl[idx][11] < soenvl[idx2][11])
+			if (g_soenvl[idx][11] < g_soenvl[idx2][11])
 			{
-				copy_arr(temp, soenvl[idx], 0);
-				copy_arr(soenvl[idx], soenvl[idx2], 0);
-				copy_arr(soenvl[idx2], temp, 0);
+				copy_arr(temp, g_soenvl[idx], 0);
+				copy_arr(g_soenvl[idx], g_soenvl[idx2], 0);
+				copy_arr(g_soenvl[idx2], temp, 0);
 			}
 			idx2++;
 		}
@@ -95,11 +95,11 @@ int		get_env_list(char *chr)
 	int idx;
 
 	idx = 0;
-	while (envl[idx][0])
+	while (g_envl[idx][0])
 	{
-		if(check_env(chr, envl[idx])) //find chr
-			return(idx);
+		if (check_env(chr, g_envl[idx]))
+			return (idx);
 		idx++;
 	}
-	return(-1);
+	return (-1);
 }

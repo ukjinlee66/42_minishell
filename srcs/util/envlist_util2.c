@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 00:37:36 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/26 00:48:06 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/01 13:25:19 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	add_str_de(void)
 	int		idx2;
 
 	idx = 0;
-	while (soenvl[idx][12])
+	while (g_soenvl[idx][12])
 	{
-		ft_strlcpy(soenvl[idx], "declare -x", 11);
-		soenvl[idx][10] = ' ';
+		ft_strlcpy(g_soenvl[idx], "declare -x", 11);
+		g_soenvl[idx][10] = ' ';
 		idx++;
 	}
 }
@@ -42,25 +42,25 @@ bool	check_env(char *find, char *b)
 	return (true);
 }
 
-void	set_env_list(char *name, char *value) // 
+void	set_env_list(char *name, char *value)
 {
 	int		idx;
 	char	temp[2048];
-	
+
 	idx = 0;
-	ft_strlcpy(temp, ft_strjoin(ft_strjoin(name, "="),value),
-			ft_strlen(name)+ft_strlen(value) + 2);
-	while (envl[idx][0])
+	ft_strlcpy(temp, ft_strjoin(ft_strjoin(name, "="), value),
+			ft_strlen(name) + ft_strlen(value) + 2);
+	while (g_envl[idx][0])
 		idx++;
-	ft_strlcpy(envl[idx + 1], envl[idx], ft_strlen(envl[idx]) + 1);
-	ft_strlcpy(envl[idx], envl[idx - 1], ft_strlen(envl[idx - 1]) + 1);
-	ft_strlcpy(envl[idx - 1], temp, ft_strlen(temp) + 1);
+	ft_strlcpy(g_envl[idx + 1], g_envl[idx], ft_strlen(g_envl[idx]) + 1);
+	ft_strlcpy(g_envl[idx], g_envl[idx - 1], ft_strlen(g_envl[idx - 1]) + 1);
+	ft_strlcpy(g_envl[idx - 1], temp, ft_strlen(temp) + 1);
 }
 
 void	add_double(char (*env)[2048])
 {
-	char **name_value;
-	char *temp;
+	char	**name_value;
+	char	*temp;
 
 	name_value = ft_split(*env, '=');
 	if (ft_strchr(name_value[1], '\"') != 0)
@@ -77,11 +77,11 @@ int		get_soenv_list(char *chr)
 	int idx;
 
 	idx = 0;
-	while (soenvl[idx][0])
+	while (g_soenvl[idx][0])
 	{
-		if(check_env(chr, soenvl[idx] + 11)) //find chr
-			return(idx);
+		if (check_env(chr, g_soenvl[idx] + 11))
+			return (idx);
 		idx++;
 	}
-	return(-1);
+	return (-1);
 }
