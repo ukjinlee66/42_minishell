@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:21:57 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/31 23:49:28 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/01 13:56:24 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,10 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 		else
 			ret = launch_excutable(argv, receiver, sender);
 		if (sender[0] != -1 && receiver[0] == -1)
+		{
 			dup2(tmp_fd, 1);
+			close(tmp_fd);
+		}
 	}
 	ret_str = ft_itoa(ret);
 	two_pointer_free(&argv);
