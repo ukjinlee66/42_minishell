@@ -5,6 +5,7 @@ static void	arg_part(int fd_out, int fd)
 	char		buf[IO_BUF_SIZE + 1];
 	int			write_len;
 
+	g_pid_stat = false;
 	if ((write_len = read(fd, buf, IO_BUF_SIZE)) < 0)
 		write(1, "unexpected error!!\n", 19);
 	else
@@ -39,6 +40,7 @@ void		arg_backward(t_list **p_first_elem, t_list *before, int *receiver, int *se
 		else
 		{
 			close(fd);
+			g_pid_stat = true;
 			receiver[0] = new_pipe[0];
 			receiver[1] = -1;
 			handle_command(p_first_elem, receiver, sender);
