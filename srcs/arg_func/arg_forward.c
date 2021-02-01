@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static int	arg_part(const char *file_name, int fd_in)
+static void	arg_part(const char *file_name, int fd_in)
 {
 	char		buf[IO_BUF_SIZE + 1];
 	int			read_len;
@@ -15,10 +15,10 @@ static int	arg_part(const char *file_name, int fd_in)
 	}
 	else
 		write(1, "error!!\n", 8);
-	return (0);
+	exit(0);
 }
 
-int			arg_forward(t_list **p_first_elem, t_list *before, int *receiver, int *sender)
+void		arg_forward(t_list **p_first_elem, t_list *before, int *receiver, int *sender)
 {
 	pid_t		pid_num;
 	int			new_pipe[2];
@@ -29,13 +29,13 @@ int			arg_forward(t_list **p_first_elem, t_list *before, int *receiver, int *sen
 	file_name = edit_list4redirection(p_first_elem, before);
 	pipe(new_pipe);
 	if (!(pid_num = fork()))
-		return (arg_part(file_name, new_pipe[0]));
+		arg_part(file_name, new_pipe[0]);
 	else
 	{
 		while (sender[cnt] != -1)
 			cnt++;
 		sender[cnt] = new_pipe[1];
 		sender[cnt + 1] = -1;
-		return (handle_command(p_first_elem, receiver, sender));
+		handle_command(p_first_elem, receiver, sender);
 	}
 }

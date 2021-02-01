@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int			arg_pipe(t_list **p_first_elem, t_list *before, int *receiver, int *sender)
+void		arg_pipe(t_list **p_first_elem, t_list *before, int *receiver, int *sender)
 {
 	t_list		*current;
 	pid_t		pid_num;
@@ -22,7 +22,7 @@ int			arg_pipe(t_list **p_first_elem, t_list *before, int *receiver, int *sender
 		receiver[1] = -1;
 		sender[0] = -1;
 		handle_command(&current, receiver, sender);
-		return (0); //not end program
+		exit(0); //not end program
 	}
 	else
 	{
@@ -31,6 +31,6 @@ int			arg_pipe(t_list **p_first_elem, t_list *before, int *receiver, int *sender
 			cnt++;
 		sender[cnt] = new_pipe[1];
 		sender[cnt + 1] = -1;
-		return (handle_command(p_first_elem, receiver, sender));
+		handle_command(p_first_elem, receiver, sender);
 	}
 }

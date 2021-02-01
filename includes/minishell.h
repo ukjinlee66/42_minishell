@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:02:53 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/01 14:26:25 by sseo             ###   ########.fr       */
+/*   Updated: 2021/02/01 15:07:15 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,20 +53,20 @@ typedef struct		s_list
 /*
 **					args
 */
-int					arg_backward(t_list **p_first_elem, t_list *before,
+void				arg_backward(t_list **p_first_elem, t_list *before,
 		int *pipe_in, int *pipe_out);
-int					arg_extract(t_list **p_first_elem, t_list *before,
+void				arg_extract(t_list **p_first_elem, t_list *before,
 		int *pipe_in, int *pipe_out);
-int					arg_forward(t_list **p_first_elem, t_list *before,
+void				arg_forward(t_list **p_first_elem, t_list *before,
 		int *pipe_in, int *pipe_out);
-int					arg_semicolon(t_list **p_first_elem, t_list *target,
+void				arg_semicolon(t_list **p_first_elem, t_list *target,
 		int *pipe_in, int *pipe_out);
-int					arg_pipe(t_list **p_first_elem, t_list *before,
+void				arg_pipe(t_list **p_first_elem, t_list *before,
 		int *pipe_in, int *pipe_out);
 /*
 **					commands
 */
-int					handle_command(t_list **p_first_elem,
+void				handle_command(t_list **p_first_elem,
 		int *pipe_in, int *pipe_out);
 int					execute_command(t_list *list_start, t_list *list_end,
 		int *pipe_in, int *pipe_out);

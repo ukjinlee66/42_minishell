@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int			arg_semicolon(t_list **p_first_elem, t_list *target, int *receiver, int *sender)
+void		arg_semicolon(t_list **p_first_elem, t_list *target, int *receiver, int *sender)
 {
 	t_list	*current;
 
@@ -12,5 +12,5 @@ int			arg_semicolon(t_list **p_first_elem, t_list *target, int *receiver, int *s
 	target = target->next;
 	free(current->data);
 	free(current);
-	return (handle_command(&target, receiver, sender));
+	handle_command(&target, receiver, sender);
 }
