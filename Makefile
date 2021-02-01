@@ -14,6 +14,7 @@ SRCS = srcs/main.c							\
 	   srcs/arg_func/arg_forward.c			\
 	   srcs/arg_func/arg_pipe.c				\
 	   srcs/arg_func/arg_semicolon.c		\
+	   srcs/arg_func/arg_func.c				\
 	   srcs/command_func/command_exit.c		\
 	   srcs/command_func/execute_command.c	\
 	   srcs/command_func/handle_command.c	\
