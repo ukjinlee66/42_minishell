@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:02:53 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/01 13:09:42 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/01 14:26:25 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int					arg_pipe(t_list **p_first_elem, t_list *before,
 /*
 **					commands
 */
-void				handle_command(t_list **p_first_elem,
+int					handle_command(t_list **p_first_elem,
 		int *pipe_in, int *pipe_out);
 int					execute_command(t_list *list_start, t_list *list_end,
 		int *pipe_in, int *pipe_out);

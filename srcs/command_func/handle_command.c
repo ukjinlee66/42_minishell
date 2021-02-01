@@ -6,13 +6,13 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 16:23:44 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/30 16:10:12 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/01 14:19:35 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	handle_command(t_list **p_first_elem, int *receiver,
+int		handle_command(t_list **p_first_elem, int *receiver,
 		int *sender)
 {
 	t_list		*before;
@@ -30,19 +30,19 @@ void	handle_command(t_list **p_first_elem, int *receiver,
 		current = current->next;
 	}
 	if (arg_type == 1)
-		arg_forward(p_first_elem, before, receiver, sender);
+		return (arg_forward(p_first_elem, before, receiver, sender));
 	else if (arg_type == 2)
-		arg_extract(p_first_elem, before, receiver, sender);
+		return (arg_extract(p_first_elem, before, receiver, sender));
 	else if (arg_type == 3)
-		arg_backward(p_first_elem, before, receiver, sender);
+		return (arg_backward(p_first_elem, before, receiver, sender));
 	else if (arg_type == 4)
-		arg_semicolon(p_first_elem, current, receiver, sender);
+		return (arg_semicolon(p_first_elem, current, receiver, sender));
 	else if (arg_type == 5)
-		arg_pipe(p_first_elem, before, receiver ,sender);
+		return (arg_pipe(p_first_elem, before, receiver ,sender));
 	else
 	{
 		execute_command(*p_first_elem, 0, receiver, sender);
 		wait(0);
+		return (1);
 	}
-	return ;
 }

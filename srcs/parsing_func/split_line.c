@@ -76,8 +76,8 @@ static int		parse_env_variables(const char *line, char **p_data, size_t *p_start
 		{
 			*p_start += 2;
 			start = 0;
-			len = ft_strlen(ret_str);
-			return (update_data(ret_str, p_data, &start, &len));
+			len = ft_strlen(g_ret_str);
+			return (update_data(g_ret_str, p_data, &start, &len));
 		}
 		len = 1;
 		return (update_data(line, p_data, p_start, &len));
@@ -90,8 +90,8 @@ static int		parse_env_variables(const char *line, char **p_data, size_t *p_start
 	if (env_idx >= 0)
 	{
 		start = len + 1;
-		len = ft_strlen(envl[env_idx]) - start;
-		return (update_data(envl[env_idx], p_data, &start, &len));
+		len = ft_strlen(g_envl[env_idx]) - start;
+		return (update_data(g_envl[env_idx], p_data, &start, &len));
 	}
 	return (0);
 }

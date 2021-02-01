@@ -12,6 +12,5 @@ int			arg_semicolon(t_list **p_first_elem, t_list *target, int *receiver, int *s
 	target = target->next;
 	free(current->data);
 	free(current);
-	handle_command(&target, receiver, sender);
-	return (0);
+	return (handle_command(&target, receiver, sender));
 }

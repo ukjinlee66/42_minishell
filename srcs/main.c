@@ -6,13 +6,13 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 15:15:53 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/01 14:18:16 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/01 14:22:35 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		main_process(void)
+int			main_process(void)
 {
 	t_list			*command_lines;
 	char			*line;
@@ -34,21 +34,24 @@ void		main_process(void)
 	{
 		receiver[0] = -1;
 		sender[0] = -1;
-		handle_command(&command_lines, receiver, sender);
+		return (handle_command(&command_lines, receiver, sender));
 	}
 }
 
 int			main(int argc, char **argv, char **envp)
 {
+	int		main_flag;
+
+	main_flag = true;
 	if (argc == 1)
 	{
 		g_ret_str = ft_strdup("0");
 		copy_env_list(envp);
-		while (1)
+		while (main_flag)
 		{
 			signal(SIGINT, handle_sig);
 			signal(SIGQUIT, handle_sig2);
-			main_process();
+			main_flag = main_process();
 		}
 	}
 	return (0);
