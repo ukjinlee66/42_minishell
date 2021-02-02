@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:09:45 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 18:03:12 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/02 18:20:02 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		launch_excutable(char **argv, int *receiver, int *sender)
 			write(1, ": command not found\n", 21);
 			exit(127);
 		}
-		exit (0);
+		exit(0);
 	}
 	waitpid(pid, &status, 0);
 	return (stat_check(status));

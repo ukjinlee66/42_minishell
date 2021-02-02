@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   arg_backward.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/02 18:29:53 by youlee            #+#    #+#             */
+/*   Updated: 2021/02/02 18:35:56 by youlee           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static void	arg_part(int *pipe_fd, int fd)
@@ -19,7 +31,8 @@ static void	arg_part(int *pipe_fd, int fd)
 	exit(0);
 }
 
-void		arg_backward(t_list **p_first_elem, t_list *before, int *receiver, int *sender)
+void		arg_backward(t_list **p_first_elem, t_list *before,
+		int *receiver, int *sender)
 {
 	int			fd;
 	pid_t		pid_num;

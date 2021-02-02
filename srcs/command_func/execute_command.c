@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:21:57 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 17:58:24 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/02 18:22:49 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,23 +111,23 @@ static void	end_dup(int *tmp_fd, int *tmp_fd2, int *receiver,
 	}
 }
 
-int			execute_command(t_list *list_start, t_list *list_end, \
-								int *receiver, int *sender)
+int			execute_command(t_list *list_start, t_list *list_end,\
+		int *receiver, int *sender)
 {
 	char		**argv;
 	int			cnt;
 	char		buf[IO_BUF_SIZE];
 	int			ret;
-	int			tmp_fd, tmp_fd2;
+	int			tmp_fd[2];
 
 	ret = 0;
 	argv = construct_argv(list_start, list_end);
 	if (argv[0] != 0)
 	{
-		start_dup(&tmp_fd, &tmp_fd2, receiver, sender);
+		start_dup(&tmp_fd[0], &tmp_fd[1], receiver, sender);
 		argv[0] = uppercase_conversion(argv[0]);
 		ret = parse_if(argv, receiver, sender);
-		end_dup(&tmp_fd, &tmp_fd2, receiver, sender);
+		end_dup(&tmp_fd[0], &tmp_fd[1], receiver, sender);
 	}
 	ft_strlcpy(g_ret_str, ft_itoa(ret), ft_strlen(ft_itoa(ret)) + 2);
 	two_pointer_free(&argv);
