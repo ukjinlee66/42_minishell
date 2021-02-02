@@ -6,7 +6,7 @@
 /*   By: sseo <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 18:18:51 by sseo              #+#    #+#             */
-/*   Updated: 2021/02/02 21:49:04 by sseo             ###   ########.fr       */
+/*   Updated: 2021/02/02 21:54:06 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static int		support_split_line(const char *line, char **p_data, \
 	size_t			len;
 	int				my_errno;
 
-	len = 0;
 	my_errno = 0;
 	if (c == '$')
 		my_errno |= parse_env_variables(line, p_data, p_start);
@@ -67,7 +66,7 @@ static int		support_split_line(const char *line, char **p_data, \
 	else if (c == '\\')
 	{
 		len = 1;
-		p_start++;
+		(*p_start)++;
 		my_errno |= update_data(line, p_data, p_start, &len);
 	}
 	return (my_errno);
