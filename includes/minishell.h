@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:02:53 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 17:45:12 by sseo             ###   ########.fr       */
+/*   Updated: 2021/02/02 18:02:39 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ void				handle_sig2(int sig_num);
 int					put_err(int errn);
 int					dir_err(char **path, char **argv, char **envp);
 int					is_dir(char **argv);
+int					stat_check(int status);
 /*
 **					variable
 */

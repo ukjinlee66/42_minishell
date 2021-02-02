@@ -6,13 +6,13 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:34:24 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 17:34:26 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/02 18:01:22 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int		stat_check(int status)
+int				stat_check(int status)
 {
 	g_pid_stat = true;
 	if (WIFEXITED(status) == false)
