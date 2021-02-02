@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:02:53 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/01 21:03:01 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/02 12:55:42 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
 # include <sys/wait.h>
 # include <sys/stat.h>
 # include <stdbool.h>
-
 /*
 **===========================define values===============================
 */
@@ -157,6 +156,6 @@ char				g_envl[2048][2048];
 char				g_soenvl[2048][2048];
 char				g_print_buf[2048];
 DIR					*g_dp;
-char				*g_ret_str;
+char				g_ret_str[10];
 bool				g_pid_stat;
 #endif

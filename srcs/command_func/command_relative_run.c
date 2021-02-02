@@ -6,17 +6,15 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:34:24 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 11:34:36 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/02 13:26:19 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-#include "minishell.h"
-
 int		command_relative_run(char **argv, int *receiver, int *sender)
 {
-	int		idx;
+	int		status;
 	char	*path;
 	char	*command;
 	char	**envp;
@@ -26,19 +24,25 @@ int		command_relative_run(char **argv, int *receiver, int *sender)
 	envp = make_envp();
 	command = make_com(argv[0]);
 	argv[0] = command;
-	idx = 0;
+	g_pid_stat = false;
 	pid = fork();
 	if (pid == 0)
 	{
-		g_pid_stat = false;
 		if (execve(path, argv, envp) == -1)
 		{
 			write(1, strerror(errno), ft_strlen(strerror(errno)) + 1);
 			write(1, "\n", 1);
 			exit(1);
-			//return (1);
 		}
 	}
-	wait(0);
+	waitpid(pid, &status, 0);
+	g_pid_stat = true;
+	if (WIFEXITED(status) == false)
+	{
+		if (ft_strcmp(g_ret_str, "130") == 0)
+			return (130);
+		else if (ft_strcmp(g_ret_str, "131") == 0)
+			return (131);
+	}
 	return (0);
 }

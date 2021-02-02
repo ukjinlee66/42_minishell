@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:21:57 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/01 20:10:04 by sseo             ###   ########.fr       */
+/*   Updated: 2021/02/02 11:42:35 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 			dup2(tmp_fd2, 1);
 		}
 	}
-	g_ret_str = ft_itoa(ret);
+	ft_strlcpy(g_ret_str, ft_itoa(ret), ft_strlen(ft_itoa(ret)) + 2);
 	two_pointer_free(&argv);
 	return (ret);
 }
