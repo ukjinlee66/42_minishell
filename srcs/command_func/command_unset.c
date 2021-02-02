@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 19:58:04 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/01 13:14:42 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/02 17:39:28 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,7 @@ int		command_unset(char **argv, int *receiver, int *sender)
 		g_soenvl[idx2 - 1][0] = '\0';
 	}
 	else
-	{
-		write(1, strerror(errno), ft_strlen(strerror(errno)));
-		write(1, "\n", 1);
-		return (1);
-	}
+		return (put_err((int)errno));
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 19:57:26 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/01 14:19:25 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/02 17:27:18 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ int		command_cd(char **argv, int *receiver, int *sender)
 		}
 	}
 	else
-	{
 		return (cd_home());
-	}
 	return (0);
 }
 

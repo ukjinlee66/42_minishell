@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:02:53 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 17:12:43 by sseo             ###   ########.fr       */
+/*   Updated: 2021/02/02 17:32:21 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ int					command_exit(char **argv);
 /*
 **		command functions
 */
-int					command_echo(char **argv, int *receiver, int *sender);
+int					command_echo(char **argv, int *receiver, int *sender,
+		bool option_val);
 int					command_cd(char **argv, int *receiver, int *sender);
 int					cd_home(void);
 int					command_env(char **argv, int *receiver, int *sender);
@@ -150,6 +151,7 @@ void				handle_sig(int sig_num);
 void				handle_sig2(int sig_num);
 int					put_err(int errn);
 int					dir_err(char **path, char **argv, char **envp);
+int					is_dir(char **argv);
 /*
 **					variable
 */

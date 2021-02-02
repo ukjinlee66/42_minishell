@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:21:57 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 15:24:22 by sseo             ###   ########.fr       */
+/*   Updated: 2021/02/02 17:31:06 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 		}
 		argv[0] = uppercase_conversion(argv[0]);
 		if (!ft_strcmp(argv[0], "echo"))
-			ret = command_echo(argv, receiver, sender);
+			ret = command_echo(argv, receiver, sender,
+					false);
 		else if (!ft_strcmp(argv[0], "cd"))
 			ret = command_cd(argv, receiver, sender);
 		else if (!ft_strcmp(argv[0], "pwd"))

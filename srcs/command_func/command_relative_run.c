@@ -6,13 +6,26 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:34:24 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 15:41:37 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/02 17:34:26 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		command_relative_run(char **argv, int *receiver, int *sender)
+static int		stat_check(int status)
+{
+	g_pid_stat = true;
+	if (WIFEXITED(status) == false)
+	{
+		if (ft_strcmp(g_ret_str, "130") == 0)
+			return (130);
+		else if (ft_strcmp(g_ret_str, "131") == 0)
+			return (131);
+	}
+	return (0);
+}
+
+int				command_relative_run(char **argv, int *receiver, int *sender)
 {
 	int		status;
 	char	*path;
@@ -20,12 +33,8 @@ int		command_relative_run(char **argv, int *receiver, int *sender)
 	char	**envp;
 	int		pid;
 
-	if ((g_dp = opendir(argv[0])) != NULL)
-	{
-		write(1, argv[0], ft_strlen(argv[0]) + 1);
-		write(1, ": is a directory\n",18);
-		return(126);
-	}
+	if (is_dir(&argv[0]) != 0)
+		return (is_dir(&argv[0]));
 	path = ft_strdup(argv[0] + 2);
 	envp = make_envp();
 	command = make_com(argv[0]);
@@ -42,13 +51,5 @@ int		command_relative_run(char **argv, int *receiver, int *sender)
 		}
 	}
 	waitpid(pid, &status, 0);
-	g_pid_stat = true;
-	if (WIFEXITED(status) == false)
-	{
-		if (ft_strcmp(g_ret_str, "130") == 0)
-			return (130);
-		else if (ft_strcmp(g_ret_str, "131") == 0)
-			return (131);
-	}
-	return (0);
+	return (stat_check(status));
 }

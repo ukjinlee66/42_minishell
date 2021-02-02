@@ -6,18 +6,17 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 16:15:59 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/01 16:42:39 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/02 17:31:46 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int			command_echo(char **argv, int *receiver, int *sender)
+int			command_echo(char **argv, int *receiver, int *sender,
+		bool option_val)
 {
 	int		cnt;
-	bool	option_val;
 
-	option_val = false;
 	cnt = 1;
 	if (argv[1] == NULL)
 		write(1, "\n", 1);
@@ -41,9 +40,4 @@ int			command_echo(char **argv, int *receiver, int *sender)
 			write(1, "\n", 1);
 	}
 	return (0);
-}
-
-void		command_echo2(char **argv, int *receiver, int *sender)
-{
-
 }
