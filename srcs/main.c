@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 15:15:53 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/01 17:13:10 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/01 22:03:18 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,15 @@ void		main_process(void)
 	int				receiver[1000];
 	int				sender[1000];
 
+			signal(SIGINT, handle_sig);
+			signal(SIGQUIT, handle_sig2);
 	getcwd(g_cur_path, PATH_SIZE);
-	write(1, g_cur_path, ft_strlen(g_cur_path));
-	write(1, "$ ", 2);
+	if (ft_strcmp(g_ret_str, "130") != 0)
+	{
+		printf("ret_str : %s\n",g_ret_str);
+		write(1, g_cur_path, ft_strlen(g_cur_path));
+		write(1, "$ ", 2);
+	}
 	if ((gnl_ret = get_interactive_line(&line)) < 0)
 		exit(2);
 	if (gnl_ret == 0)
@@ -47,8 +53,6 @@ int			main(int argc, char **argv, char **envp)
 		g_pid_stat = true;
 		while (1)
 		{
-			signal(SIGINT, handle_sig);
-			signal(SIGQUIT, handle_sig2);
 			main_process();
 		}
 	}

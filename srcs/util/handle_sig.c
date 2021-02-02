@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/30 14:10:27 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/01 17:11:29 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/01 23:05:50 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	handle_sig(int sig_num)
 	if (g_pid_stat == true)
 	{
 		getcwd(g_cur_path, PATH_SIZE);
-		write(1, g_cur_path, ft_strlen(g_cur_path));
-		write(1, "$ ", 2);
+		write(2, g_cur_path, ft_strlen(g_cur_path));
+		write(2, "$ ", 2);
 	}
 }
 

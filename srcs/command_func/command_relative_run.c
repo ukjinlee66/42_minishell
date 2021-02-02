@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/19 19:58:55 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/01 17:08:08 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/01 21:36:23 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		command_relative_run(char **argv, int *receiver, int *sender)
 	argv[0] = command;
 	idx = 0;
 	pid = fork();
-	if (!pid)
+	if (pid == 0)
 	{
 		g_pid_stat = false;
 		if (execve(path, argv, envp) == -1)

@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 05:45:28 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/01 13:10:50 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/01 21:31:02 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,35 @@ int		command_absolute_run(char **argv, int *receiver, int *sender)
 	envp = make_envp();
 	command = make_com(argv[0]);
 	argv[0] = command;
-	idx = 0;
 	pid = fork();
 	if (pid == 0)
 	{
-		if (execve(path, argv, envp) == -1)
+		g_pid_stat = false;
+		if (!dir_err(&path, argv, envp))
 		{
-			write(1, strerror(errno), ft_strlen(strerror(errno)) + 1);
-			write(1, "\n", 1);
-			return (1);
+			free(path);
+			return (put_err(errno));
 		}
-		else
-			return (0);
 	}
+	//idx = 0;
+//	pid = fork();
+//	if (pid == 0)
+//	{
+//		g_pid_stat = false;
+//		if (execve(path, argv, envp) == -1)
+//		{
+//			free(path);
+//			return (put_err(errno));
+//		}
+//	}
 	return (0);
+}
+
+int		put_err(int errno)
+{
+	write(1, strerror(errno), ft_strlen(strerror(errno)) + 1);
+	write(1, "\n", 1);
+	return (1);
 }
 
 char	*make_com(char *argv)

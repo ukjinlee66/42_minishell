@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:02:53 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/01 16:19:23 by sseo             ###   ########.fr       */
+/*   Updated: 2021/02/01 21:03:01 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,8 @@ int					get_soenv_list(char *chr);
 void				set_env_list2(char *name, char *value);
 void				handle_sig(int sig_num);
 void				handle_sig2(int sig_num);
+int					put_err(int errno);
+int					dir_err(char **path, char **argv, char **envp);
 /*
 **					variable
 */

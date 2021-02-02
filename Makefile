@@ -36,7 +36,8 @@ SRCS = srcs/main.c							\
 	   srcs/util/envlist_util.c \
 	   srcs/util/envlist_util2.c \
 	   srcs/util/envlist_util3.c \
-	   srcs/util/handle_sig.c
+	   srcs/util/handle_sig.c \
+	   srcs/util/handle_path.c
 
 OBJS = $(SRCS:.c=.o)
 
