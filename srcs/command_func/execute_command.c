@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:21:57 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 15:11:46 by sseo             ###   ########.fr       */
+/*   Updated: 2021/02/02 15:16:27 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,7 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 	int			tmp_fd, tmp_fd2;
 
 	ret = 0;
-	if (!(argv = construct_argv(list_start, list_end)))
-	{
-		free_list(list_start);
-		return (2); // malloc failed
-	}
+	argv = construct_argv(list_start, list_end);
 	if (argv[0] != 0)
 	{
 		if (receiver[0] != -1 && sender[0] == -1)
@@ -96,19 +92,11 @@ int			execute_command(t_list *list_start, t_list *list_end, \
 		else
 			ret = launch_excutable(argv, receiver, sender);
 		if (sender[0] != -1 && receiver[0] == -1)
-		{
-			close(sender[0]);
 			dup2(tmp_fd, 1);
-		}
 		else if (receiver[0] != -1 && sender[0] == -1)
-		{
-			close(receiver[0]);
 			dup2(tmp_fd, 0);
-		}
 		else if (sender[0] != -1 && receiver[0] != -1)
 		{
-			close(sender[0]);
-			close(receiver[0]);
 			dup2(tmp_fd, 0);
 			dup2(tmp_fd2, 1);
 		}

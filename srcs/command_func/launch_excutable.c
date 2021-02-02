@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:09:45 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 14:18:25 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/02 15:07:49 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		launch_excutable(char **argv, int *receiver, int *sender)
 			exit(127);
 			//return (127);
 		}
+		exit (0);
 	}
 	waitpid(pid, &status, 0);
 	g_pid_stat = true;
