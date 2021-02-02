@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 05:45:28 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 17:34:17 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/02 22:03:29 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int		command_absolute_run(char **argv, int *receiver, int *sender)
 	char	**envp;
 	int		pid;
 
-	if (is_dir(&argv[0]) != 0)
-		return (is_dir(&argv[0]));
+	if ((pid = is_dir(&argv[0])))
+		return (pid);
 	path = ft_strdup(argv[0]);
 	envp = make_envp();
 	command = make_com(argv[0]);

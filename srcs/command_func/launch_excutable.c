@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:09:45 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 18:20:02 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/02 21:34:01 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int		launch_excutable(char **argv, int *receiver, int *sender)
 	char	**envp;
 	int		pid;
 	int		status;
+	int		err;
 
 	envp = make_envp();
 	g_pid_stat = false;

@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:21:57 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 18:22:49 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/02 21:34:15 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	parse_if(char **argv, int *receiver, int *sender)
 	else if (!ft_strcmp(argv[0], "env"))
 		ret = command_env(argv, receiver, sender);
 	else if (!ft_strcmp(argv[0], "exit"))
-		exit(1);
+		ret = command_exit(argv);
 	else if (argv[0][0] == '/')
 		ret = command_absolute_run(argv, receiver, sender);
 	else if (argv[0][0] == '.' && argv[0][1] == '/')

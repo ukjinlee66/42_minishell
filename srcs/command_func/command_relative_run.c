@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:34:24 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 18:01:22 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/02 21:34:00 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int				stat_check(int status)
 		else if (ft_strcmp(g_ret_str, "131") == 0)
 			return (131);
 	}
+	else if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
 	return (0);
 }
 
