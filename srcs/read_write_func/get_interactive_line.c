@@ -6,10 +6,9 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 15:16:04 by youlee            #+#    #+#             */
-/*   Updated: 2021/01/30 15:10:55 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/02 18:56:30 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minishell.h"
 
@@ -26,7 +25,7 @@ int		get_interactive_line(char **line)
 	char	buf[2];
 	char	*store;
 	char	*temp;
-	
+
 	size = 1;
 	ft_bzero((void *)buf, 2);
 	if (!(store = (char *)malloc(sizeof(char))))
