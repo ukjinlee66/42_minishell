@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:34:24 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 13:26:19 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/02 15:41:37 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ int		command_relative_run(char **argv, int *receiver, int *sender)
 	char	**envp;
 	int		pid;
 
+	if ((g_dp = opendir(argv[0])) != NULL)
+	{
+		write(1, argv[0], ft_strlen(argv[0]) + 1);
+		write(1, ": is a directory\n",18);
+		return(126);
+	}
 	path = ft_strdup(argv[0] + 2);
 	envp = make_envp();
 	command = make_com(argv[0]);
