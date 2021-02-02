@@ -43,6 +43,8 @@ void		arg_backward(t_list **p_first_elem, t_list *before, int *receiver, int *se
 			close(fd);
 			close(new_pipe[1]);
 			g_pid_stat = true;
+			if (receiver[0])
+				close(receiver[0]);
 			receiver[0] = new_pipe[0];
 			receiver[1] = -1;
 			handle_command(p_first_elem, receiver, sender);

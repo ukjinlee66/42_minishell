@@ -6,7 +6,7 @@
 /*   By: sseo <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 15:30:44 by sseo              #+#    #+#             */
-/*   Updated: 2021/02/01 16:18:32 by sseo             ###   ########.fr       */
+/*   Updated: 2021/02/02 15:18:47 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	control_sender(int *sender, int new_pipe)
 {
 	if (sender[0] != -1)
-		write(sender[0], "\0", 1);
+		close(sender[0]);
 	sender[0] = new_pipe;
 	sender[1] = -1;
 }
