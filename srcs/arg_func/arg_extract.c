@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 18:30:02 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 18:30:04 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/02 19:39:01 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,36 @@ static void		arg_part(int *pipe_fd, int fd)
 	exit(0);
 }
 
+static int		check_open(t_list **p_first_elem, t_list *before, int *sender)
+{
+	int			fd;
+	char		*file_name;
+	char		*str_err;
+
+	file_name = edit_list4redirection(p_first_elem, before);
+	if ((fd = open(file_name, O_WRONLY | O_CREAT | O_APPEND, 0664)) < 0)
+	{
+		control_open_error(errno, *p_first_elem);
+		control_sender(sender, -1);
+		if ((str_err = ft_itoa(1)))
+		{
+			ft_strlcpy(g_ret_str, str_err, ft_strlen(str_err) + 1);
+			free(str_err);
+		}
+	}
+	free(file_name);
+	return (fd);
+}
+
 void			arg_extract(t_list **p_first_elem, t_list *before, int *receiver, int *sender)
 {
 	int			fd;
 	pid_t		pid_num;
 	int			new_pipe[2];
-	char		*file_name;
 
-	file_name = edit_list4redirection(p_first_elem, before);
-	if ((fd = open(file_name, O_WRONLY | O_CREAT | O_APPEND, 0664)) < 0)
+
+	if ((fd = check_open(p_first_elem, before, sender)) >= 0)
 	{
-		control_open_error(file_name, errno, *p_first_elem);
-		control_sender(sender, -1);
-	}
-	else
-	{
-		free(file_name);
 		pipe(new_pipe);
 		if (!(pid_num = fork()))
 			arg_part(new_pipe, fd);

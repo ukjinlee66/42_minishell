@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:02:53 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 18:02:39 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/02 19:08:33 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void				arg_semicolon(t_list **p_first_elem, t_list *target,
 void				arg_pipe(t_list **p_first_elem, t_list *before,
 		int *pipe_in, int *pipe_out);
 void				control_sender(int *sender, int new_pipe);
-void				control_open_error(char *file_name, int eno, t_list *first_elem);
+void				control_open_error(int eno, t_list *first_elem);
 /*
 **					commands
 */
@@ -106,6 +106,11 @@ int					get_arg_type(const char *arg);
 int					update_data(const char *line, char **p_data, size_t *p_start, size_t *p_len);
 int					flush_data(t_list **p_out, const char *line, char **p_data, size_t *p_start);
 t_list				*print_parse_error(t_list *out, char *data, int eno, t_list *temp);
+int					parse_env_variables(const char *line, char **p_data, size_t *p_start);
+/*
+**					parsing_tool2.c
+*/
+int					parse_double_quote_loop(const char * line, char **p_data, size_t *p_start, size_t *p_len);
 /*
 **					split_line.c
 */

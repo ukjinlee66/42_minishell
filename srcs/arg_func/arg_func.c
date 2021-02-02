@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 18:30:17 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 18:30:19 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/02 19:08:06 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,10 @@ void	control_sender(int *sender, int new_pipe)
 	sender[1] = -1;
 }
 
-void	control_open_error(char *file_name, int eno, t_list *first_elem)
+void	control_open_error(int eno, t_list *first_elem)
 {
 	char		*str;
 
-	free(file_name);
 	str = strerror(eno);
 	write(1, str, ft_strlen(str));
 	write(1, "\n", 1);
