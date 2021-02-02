@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:09:45 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 14:05:26 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/02 14:18:25 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		launch_excutable(char **argv, int *receiver, int *sender)
 {
 	char	**envp;
 	int		pid;
+	int		status;
 
 	envp = make_envp();
 	g_pid_stat = false;
@@ -30,7 +31,14 @@ int		launch_excutable(char **argv, int *receiver, int *sender)
 			//return (127);
 		}
 	}
-	wait(0);
+	waitpid(pid, &status, 0);
 	g_pid_stat = true;
+	if (WIFEXITED(status) == false)
+	{
+		if (ft_strcmp(g_ret_str, "130") == 0)
+			return (130);
+		else if (ft_strcmp(g_ret_str, "131") == 0)
+			return (131);
+	}
 	return (0);
 }
