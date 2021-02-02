@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:02:53 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 19:08:33 by sseo             ###   ########.fr       */
+/*   Updated: 2021/02/02 19:46:51 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,18 @@ void				*edit_list4redirection(t_list **p_first_elem,
 **					parsing_tool.c
 */
 int					get_arg_type(const char *arg);
-int					update_data(const char *line, char **p_data, size_t *p_start, size_t *p_len);
-int					flush_data(t_list **p_out, const char *line, char **p_data, size_t *p_start);
-t_list				*print_parse_error(t_list *out, char *data, int eno, t_list *temp);
+int					update_data(const char *line, char **p_data,
+		size_t *p_start, size_t *p_len);
+int					flush_data(t_list **p_out, const char *line,
+		char **p_data, size_t *p_start);
+t_list				*print_parse_error(t_list *out, char *data,
+		int eno, t_list *temp);
 int					parse_env_variables(const char *line, char **p_data, size_t *p_start);
 /*
 **					parsing_tool2.c
 */
-int					parse_double_quote_loop(const char * line, char **p_data, size_t *p_start, size_t *p_len);
+int					parse_double_quote_loop(const char *line, char **p_data,
+		size_t *p_start, size_t *p_len);
 /*
 **					split_line.c
 */
