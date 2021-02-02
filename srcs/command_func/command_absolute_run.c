@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 05:45:28 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 15:38:34 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/02 17:14:20 by youlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int		command_absolute_run(char **argv, int *receiver, int *sender)
 	if ((g_dp = opendir(argv[0])) != NULL)
 	{
 		write(1, argv[0], ft_strlen(argv[0]) + 1);
-		write(1, ": is a directory\n",18);
-		return(126);
+		write(1, ": is a directory\n", 18);
+		return (126);
 	}
 	path = ft_strdup(argv[0]);
 	envp = make_envp();
@@ -42,17 +42,6 @@ int		command_absolute_run(char **argv, int *receiver, int *sender)
 		exit(0);
 	}
 	g_pid_stat = true;
-	//idx = 0;
-//	pid = fork();
-//	if (pid == 0)
-//	{
-//		g_pid_stat = false;
-//		if (execve(path, argv, envp) == -1)
-//		{
-//			free(path);
-//			return (put_err(errno));
-//		}
-//	}
 	return (0);
 }
 
