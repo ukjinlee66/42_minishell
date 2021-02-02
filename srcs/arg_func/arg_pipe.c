@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 18:30:26 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 20:05:25 by sseo             ###   ########.fr       */
+/*   Updated: 2021/02/02 20:17:17 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ static void	child(t_list **p_first_elem, int *receiver, int *sender, \
 	exit(0);
 }
 
-void		arg_pipe(t_list **p_first_elem, t_list *before, int *receiver, int *sender)
+void		arg_pipe(t_list **p_first_elem, t_list *before, \
+		int *receiver, int *sender)
 {
 	t_list		*current;
 	pid_t		pid_num;

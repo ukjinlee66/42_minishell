@@ -6,35 +6,19 @@
 /*   By: sseo <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 18:19:03 by sseo              #+#    #+#             */
-/*   Updated: 2021/02/02 20:10:16 by sseo             ###   ########.fr       */
+/*   Updated: 2021/02/02 20:39:18 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		get_arg_type(const char *arg)
+int				update_data(const char *line, char **p_data, \
+				size_t *p_start, size_t *p_len)
 {
-	if (ft_strcmp(arg, ">") == 0)
-		return (1);
-	else if (ft_strcmp(arg, ">>") == 0)
-		return (2);
-	else if (ft_strcmp(arg, "<") == 0)
-		return (3);
-	else if (ft_strcmp(arg, ";") == 0)
-		return (4);
-	else if (ft_strcmp(arg, "|") == 0)
-		return (5);
-	else
-		return (0);
-}
-
-int		update_data(const char *line, char **p_data, size_t *p_start, \
-		size_t *p_len)
-{
-	char			*new_data;
-	char			*data;
-	size_t			start;
-	size_t			len;
+	char		*new_data;
+	char		*data;
+	size_t		start;
+	size_t		len;
 
 	data = *p_data;
 	start = *p_start;
@@ -58,8 +42,8 @@ int		update_data(const char *line, char **p_data, size_t *p_start, \
 	return (0);
 }
 
-int		flush_data(t_list **p_out, const char *line, \
-		char **p_data, size_t *p_start)
+int				flush_data(t_list **p_out, const char *line, \
+				char **p_data, size_t *p_start)
 {
 	char			c;
 	void			*data;
@@ -87,7 +71,8 @@ int		flush_data(t_list **p_out, const char *line, \
 	return (0);
 }
 
-t_list	*print_parse_error(t_list *out, char *data, int eno, t_list *temp)
+t_list			*print_parse_error(t_list *out, char *data, int eno, \
+				t_list *temp)
 {
 	if (data)
 		free(data);
@@ -110,41 +95,55 @@ t_list	*print_parse_error(t_list *out, char *data, int eno, t_list *temp)
 	return (0);
 }
 
-int		parse_env_variables(const char *line, char **p_data, size_t *p_start)
+static size_t	check_env_variable(const char *line, size_t *p_start, \
+				char **p_data, size_t *p_origin_start)
+{
+	size_t		len;
+
+	len = 0;
+	while ((line[*p_start + len] >= 'a' && line[*p_start + len] <= 'z') || \
+			(line[*p_start + len] >= 'A' && line[*p_start + len] <= 'Z') || \
+			(line[*p_start + len] >= '0' && line[*p_start + len] <= '9'))
+		len++;
+	if (!len)
+	{
+		if (line[*p_start] == '?')
+		{
+			*p_origin_start += 2;
+			*p_start = 0;
+			len = ft_strlen(g_ret_str);
+			if (update_data(g_ret_str, p_data, p_start, &len))
+				return (0);
+		}
+		len = 1;
+		if (update_data(line, p_data, p_origin_start, &len))
+			return (0);
+	}
+	return (len);
+}
+
+int				parse_env_variables(const char *line, char **p_data, \
+				size_t *p_start)
 {
 	size_t		len;
 	size_t		start;
 	char		*target_variable;
 	int			env_idx;
 
-	len = 0;
 	start = *p_start + 1;
-	while ((line[start + len] >= 'a' && line[start + len] <= 'z') || \
-			(line[start + len] >= 'A' && line[start + len] <= 'Z') || \
-			(line[start + len] >= '0' && line[start + len] <= '9'))
-		len++;
-	if (!len)
+	if ((len = check_env_variable(line, &start, p_data, p_start)))
 	{
-		if (line[start] == '?')
+		if (!(target_variable = ft_substr(line, (unsigned int)start, len)))
+			return (1);
+		env_idx = get_env_list(target_variable);
+		free(target_variable);
+		*p_start = start + len;
+		if (env_idx >= 0)
 		{
-			*p_start += 2;
-			start = 0;
-			len = ft_strlen(g_ret_str);
-			return (update_data(g_ret_str, p_data, &start, &len));
+			start = len + 1;
+			len = ft_strlen(g_envl[env_idx]) - start;
+			return (update_data(g_envl[env_idx], p_data, &start, &len));
 		}
-		len = 1;
-		return (update_data(line, p_data, p_start, &len));
-	}
-	if (!(target_variable = ft_substr(line, (unsigned int)start, len)))
-		return (1);
-	env_idx = get_env_list(target_variable);
-	free(target_variable);
-	*p_start = start + len;
-	if (env_idx >= 0)
-	{
-		start = len + 1;
-		len = ft_strlen(g_envl[env_idx]) - start;
-		return (update_data(g_envl[env_idx], p_data, &start, &len));
 	}
 	return (0);
 }
