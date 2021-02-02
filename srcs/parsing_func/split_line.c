@@ -108,7 +108,9 @@ static int		parse_double_quote(const char *line, char **p_data, size_t *p_start)
 	start = *p_start + 1;
 	while (line[start + len] != '\"')
 	{
-		if (line[start + len] == '\\')
+		if (line[start + len] == '\\' && \
+				(line[start + len + 1] == '\\' || line[start + len + 1] == '\"' || \
+				 line[start + len + 1] == '$' || line[start + len + 1] == '`'))
 		{
 			if (update_data(line, p_data, &start, &len))
 				return (1);
@@ -174,22 +176,17 @@ static int		split_line_main(t_list **p_out, char **p_data, const char *line)
 		else if (c == '$')
 			my_errno |= parse_env_variables(line, p_data, &start);
 		else if (c == '\'')
-		{
 			my_errno |= parse_single_quote(line, p_data, &start);
-		}
 		else if (c == '\"')
-		{
 			my_errno |= parse_double_quote(line, p_data, &start);
+		else if (c == '\\')
+		{
+			len++;
+			start++;
+			my_errno |= update_data(line, p_data, &start, &len);
 		}
 		else
-		{
 			len++; //multiple commands handle
-			if (c == '\\')
-			{
-				start++;
-				my_errno |= update_data(line, p_data, &start, &len);
-			}
-		}
 	}
 	my_errno |= update_data(line, p_data, &start, &len);
 	my_errno |= flush_data(p_out, line, p_data, &start);
