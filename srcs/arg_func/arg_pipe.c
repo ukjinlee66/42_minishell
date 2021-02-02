@@ -15,6 +15,7 @@ void		arg_pipe(t_list **p_first_elem, t_list *before, int *receiver, int *sender
 	pipe(new_pipe);
 	if (!(pid_num = fork()))
 	{
+		close(new_pipe[1]);
 		g_pid_stat = false;
 		free_list(*p_first_elem);
 		receiver[0] = new_pipe[0];
@@ -25,6 +26,7 @@ void		arg_pipe(t_list **p_first_elem, t_list *before, int *receiver, int *sender
 	}
 	else
 	{
+		close(new_pipe[0]);
 		g_pid_stat = true;
 		free_list(current);
 		if (sender[0] != -1)

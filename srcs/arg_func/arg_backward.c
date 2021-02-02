@@ -1,20 +1,21 @@
 #include "minishell.h"
 
-static void	arg_part(int fd_out, int fd)
+static void	arg_part(int *pipe_fd, int fd)
 {
 	char		buf[IO_BUF_SIZE + 1];
 	int			write_len;
 
+	close(pipe_fd[0]);
 	g_pid_stat = false;
 	if ((write_len = read(fd, buf, IO_BUF_SIZE)) < 0)
 		write(1, "unexpected error!!\n", 19);
 	else
 	{
 		buf[write_len] = 0;
-		write(fd_out, buf, write_len);
+		write(pipe_fd[1], buf, write_len);
 	}
 	close(fd);
-	close(fd_out);
+	close(pipe_fd[1]);
 	exit(0);
 }
 
@@ -36,10 +37,11 @@ void		arg_backward(t_list **p_first_elem, t_list *before, int *receiver, int *se
 		free(file_name);
 		pipe(new_pipe);
 		if (!(pid_num = fork()))
-			arg_part(new_pipe[1], fd);
+			arg_part(new_pipe, fd);
 		else
 		{
 			close(fd);
+			close(new_pipe[1]);
 			g_pid_stat = true;
 			receiver[0] = new_pipe[0];
 			receiver[1] = -1;
