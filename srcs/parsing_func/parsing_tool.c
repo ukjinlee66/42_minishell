@@ -6,7 +6,7 @@
 /*   By: sseo <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 18:19:03 by sseo              #+#    #+#             */
-/*   Updated: 2021/02/02 18:19:05 by sseo             ###   ########.fr       */
+/*   Updated: 2021/02/02 20:10:16 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int		get_arg_type(const char *arg)
 		return (0);
 }
 
-int		update_data(const char *line, char **p_data, size_t *p_start, size_t *p_len)
+int		update_data(const char *line, char **p_data, size_t *p_start, \
+		size_t *p_len)
 {
 	char			*new_data;
 	char			*data;
@@ -43,7 +44,7 @@ int		update_data(const char *line, char **p_data, size_t *p_start, size_t *p_len
 	if (len == 0)
 		return (0);
 	if (!(new_data = ft_substr(line, (unsigned int)start, len)))
-		return (1);			//malloc fail
+		return (1);
 	if (data == 0)
 		*p_data = new_data;
 	else
@@ -52,12 +53,13 @@ int		update_data(const char *line, char **p_data, size_t *p_start, size_t *p_len
 		free(data);
 		free(new_data);
 		if (*p_data == 0)
-			return (1);		//malloc fail
+			return (1);
 	}
 	return (0);
 }
 
-int		flush_data(t_list **p_out, const char *line, char **p_data, size_t *p_start)
+int		flush_data(t_list **p_out, const char *line, \
+		char **p_data, size_t *p_start)
 {
 	char			c;
 	void			*data;
@@ -91,11 +93,14 @@ t_list	*print_parse_error(t_list *out, char *data, int eno, t_list *temp)
 		free(data);
 	if (eno & 4)
 	{
-		write(1, "syntax error near unexpected token 'newline'\n", 45);
+		write(1, "syntax error near unexpected token \'", 36);
 		if (!temp->next)
-			write(1, "newline'\n", 9);
+			write(1, "newline\'\n", 9);
 		else
+		{
 			write(1, temp->next->data, ft_strlen(temp->next->data));
+			write(1, "\'\n", 2);
+		}
 	}
 	else if (eno & 2)
 		write(1, "multiline error\n", 16);

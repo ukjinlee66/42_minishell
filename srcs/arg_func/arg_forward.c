@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 18:30:10 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 19:39:20 by sseo             ###   ########.fr       */
+/*   Updated: 2021/02/02 19:44:52 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ static int	check_open(t_list **p_first_elem, t_list *before, int *sender)
 	return (fd);
 }
 
-void		arg_forward(t_list **p_first_elem, t_list *before, int *receiver, int *sender)
+void		arg_forward(t_list **p_first_elem, t_list *before, \
+		int *receiver, int *sender)
 {
 	int			fd;
 	pid_t		pid_num;

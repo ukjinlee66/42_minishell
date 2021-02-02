@@ -6,7 +6,7 @@
 /*   By: sseo <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 18:22:37 by sseo              #+#    #+#             */
-/*   Updated: 2021/02/02 18:40:34 by sseo             ###   ########.fr       */
+/*   Updated: 2021/02/02 19:42:45 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int			parse_double_quote_loop(const char *line, char **p_data, \
 {
 	if (line[*p_start + *p_len] == '\\' && \
 			(line[*p_start + *p_len + 1] == '\\' || \
-			 line[*p_start + *p_len + 1] == '\"' || \
-			 line[*p_start + *p_len + 1] == '$' || \
-			 line[*p_start + *p_len + 1] == '`'))
+			line[*p_start + *p_len + 1] == '\"' || \
+			line[*p_start + *p_len + 1] == '$' || \
+			line[*p_start + *p_len + 1] == '`'))
 	{
 		if (update_data(line, p_data, p_start, p_len))
 			return (1);

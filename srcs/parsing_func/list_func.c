@@ -32,7 +32,7 @@ void		free_list(t_list *list)
 	while (list)
 	{
 		current = list;
-		list=list->next;
+		list = list->next;
 		free(current->data);
 		free(current);
 	}
@@ -50,7 +50,7 @@ void		*edit_list4redirection(t_list **p_first_elem, t_list *before)
 		current = *p_first_elem;
 	else
 		current = before->next;
-	after = current->next;		//after should't be null
+	after = current->next;
 	if (!before)
 		*p_first_elem = after->next;
 	else

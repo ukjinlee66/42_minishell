@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 18:30:02 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 19:39:01 by sseo             ###   ########.fr       */
+/*   Updated: 2021/02/02 19:45:12 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ static int		check_open(t_list **p_first_elem, t_list *before, int *sender)
 	return (fd);
 }
 
-void			arg_extract(t_list **p_first_elem, t_list *before, int *receiver, int *sender)
+void			arg_extract(t_list **p_first_elem, t_list *before, \
+				int *receiver, int *sender)
 {
 	int			fd;
 	pid_t		pid_num;
 	int			new_pipe[2];
-
 
 	if ((fd = check_open(p_first_elem, before, sender)) >= 0)
 	{
