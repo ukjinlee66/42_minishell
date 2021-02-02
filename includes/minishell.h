@@ -6,7 +6,7 @@
 /*   By: youlee <youlee@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:02:53 by youlee            #+#    #+#             */
-/*   Updated: 2021/02/02 14:01:35 by youlee           ###   ########.fr       */
+/*   Updated: 2021/02/02 17:12:43 by sseo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ void				*edit_list4redirection(t_list **p_first_elem,
 **					parsing_tool.c
 */
 int					get_arg_type(const char *arg);
+int					update_data(const char *line, char **p_data, size_t *p_start, size_t *p_len);
+int					flush_data(t_list **p_out, const char *line, char **p_data, size_t *p_start);
 /*
 **					split_line.c
 */
