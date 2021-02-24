@@ -13,10 +13,10 @@
 - [x] env without any options and any arguments ◦ exit without any options<br>
 - [x] ; in the command should separate commands like in bash<br>
 - [x] ’ and " should work like in bash except for multiline commands<br>
-- [ ] Redirections < > “>>” should work like in bash except for file descriptor aggregation<br>
-- [ ] Pipes | should work like in bash<br>
+- [x] Redirections < > “>>” should work like in bash except for file descriptor aggregation<br>
+- [x] Pipes | should work like in bash<br>
 - [x] Environment variables ($ followed by characters) should work like in bash • $? should work like in bash<br>
-- [ ] ctrl-C, ctrl-D and ctrl-\ should have the same result as in bash<br><br>
+- [x] ctrl-C, ctrl-D and ctrl-\ should have the same result as in bash<br><br>
 # Reference sites<br><br>
 - <https://coding-chobo.tistory.com/54> - Shell special characters<br><br>
 - <https://github.com/cacharle/minishell_test> - Minishell tester<br><br>
